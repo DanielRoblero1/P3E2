@@ -152,7 +152,7 @@ public class mdiComprasG2 extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         frmMantenimientoProveedor ventana = new frmMantenimientoProveedor();
         jDesktopPane1.add(ventana);
-        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension  desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = ventana.getSize();
         ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed

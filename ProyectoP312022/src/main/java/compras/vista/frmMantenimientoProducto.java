@@ -118,6 +118,7 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnEliminar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +127,7 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 95, 30));
 
+        btnRegistrar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +136,8 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 95, 30));
 
-        btnBuscar.setText("Buscar");
+        btnBuscar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        btnBuscar.setText("🔍");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -144,8 +147,9 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         label1.setText("PRODUCTOS");
-        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 0, -1, -1));
+        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
 
+        btnModificar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,15 +158,16 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 95, 30));
 
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label3.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label3.setText("Codigo Del Producto");
-        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, -1, -1));
-        getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 102, -1));
+        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, -1));
+        getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 102, -1));
 
         txtProveedor.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtProveedor.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 220, 20));
+        getContentPane().add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 220, 20));
 
+        btnLimpiar.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,13 +197,13 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaVendedores);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 20, 612, 440));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 612, 440));
 
         txtPrecio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtPrecio.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 220, 20));
+        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 220, 20));
 
-        label5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label5.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label5.setText("Precio Producto");
         getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
@@ -206,6 +211,7 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         lb.setText(".");
         getContentPane().add(lb, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 20, 13, -1));
 
+        jButton2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jButton2.setText("Ayuda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,47 +220,49 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 100, 30));
 
-        label6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label6.setText("Nombre Producto");
         getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 100, -1, -1));
 
-        label7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label7.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label7.setText("Marca Producto");
         getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         txtNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 220, 20));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 220, 20));
 
         txtMarca.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtMarca.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 220, 20));
+        getContentPane().add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 220, 20));
 
-        label4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label4.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label4.setText("Codigo Proveedor");
         getContentPane().add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 65, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 204));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jButton1.setText("?");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 40, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, 40, -1));
 
         txtlinea.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtlinea.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtlinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 220, 20));
+        getContentPane().add(txtlinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 220, 20));
 
-        label8.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label8.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label8.setText("linea producto");
         getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
         txtExistencia.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtExistencia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 220, 20));
+        getContentPane().add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 220, 20));
 
-        label9.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        label9.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label9.setText("existencia del producto");
         getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
