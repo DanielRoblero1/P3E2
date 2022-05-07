@@ -33,28 +33,35 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         modelo.addColumn("Valor de cuenta");
         modelo.addColumn("Referencia de cuenta");
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        List<clsCuentasPorPagar> concepto = cuentasDAO.select();
+        List<clsCuentasPorPagar> cuentaporpagar = cuentasDAO.select();
         tablaVendedores.setModel(modelo);
-        String[] dato = new String[5];
-        for (int i = 0; i < concepto.size(); i++) {
-            dato[0] = Integer.toString(concepto.get(i).getConid());
-            dato[1] = concepto.get(i).getConnombre();
-            dato[2] = concepto.get(i).getConefecto();
-            dato[3] = concepto.get(i).getConestatus().toString();
+        String[] dato = new String[7];
+        for (int i = 0; i < cuentaporpagar.size(); i++) {
+            dato[0] = Integer.toString(cuentaporpagar.get(i).getConid());
+            dato[1] = Integer.toString(cuentaporpagar.get(i).getComid());
+            dato[2] = Integer.toString(cuentaporpagar.get(i).getProvid());
+            dato[3] = Integer.toString(cuentaporpagar.get(i).getCuentadoc());
+            dato[4] = Integer.toString(cuentaporpagar.get(i).getCuentasaldo());
+            dato[5] = Integer.toString(cuentaporpagar.get(i).getCuentavalor());
+            dato[6] = Integer.toString(cuentaporpagar.get(i).getCuentareferencia());
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
     }
 
-    public void buscarConcepto() {
-        clsCuentasPorPagar conceptoAConsultar = new clsCuentasPorPagar();
+    public void buscarCuenta() {
+        clsCuentasPorPagar cuentasporpagarAConsultar = new clsCuentasPorPagar();
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        conceptoAConsultar.setConid(Integer.parseInt(txtbuscado.getText()));
-        conceptoAConsultar = cuentasDAO.query(conceptoAConsultar);
-        txtConNombre.setText(conceptoAConsultar.getConnombre());
-        txtConEfecto.setText(conceptoAConsultar.getConefecto());
-        ComboEstado.setSelectedItem(conceptoAConsultar.getConestatus());
-        
+        cuentasporpagarAConsultar.setConid(Integer.parseInt(txtbuscado.getText()));
+        cuentasporpagarAConsultar = cuentasDAO.query(cuentasporpagarAConsultar);
+        txtConId.setText(String.valueOf(cuentasporpagarAConsultar.getConid()));
+        txtComId.setText(String.valueOf(cuentasporpagarAConsultar.getComid()));
+        txtProvId.setText(String.valueOf(cuentasporpagarAConsultar.getProvid()));
+        txtCuentDoc.setText(String.valueOf(cuentasporpagarAConsultar.getCuentadoc()));
+        txtCuentSal.setText(String.valueOf(cuentasporpagarAConsultar.getCuentasaldo()));
+        txtCuentVal.setText(String.valueOf(cuentasporpagarAConsultar.getCuentavalor()));
+        txtCuentRef.setText(String.valueOf(cuentasporpagarAConsultar.getCuentareferencia()));
+       
     }
 
     public frmProcesoCuentasPorPagar() {
@@ -89,18 +96,18 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         label6 = new javax.swing.JLabel();
         label7 = new javax.swing.JLabel();
-        txtConNombre = new javax.swing.JTextField();
-        txtConEfecto = new javax.swing.JTextField();
+        txtConId = new javax.swing.JTextField();
+        txtCuentRef = new javax.swing.JTextField();
         ComboEstado = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        txtConEfecto1 = new javax.swing.JTextField();
-        txtConEfecto2 = new javax.swing.JTextField();
+        txtComId = new javax.swing.JTextField();
+        txtProvId = new javax.swing.JTextField();
         label8 = new javax.swing.JLabel();
-        txtConEfecto3 = new javax.swing.JTextField();
+        txtCuentDoc = new javax.swing.JTextField();
         label9 = new javax.swing.JLabel();
-        txtConEfecto4 = new javax.swing.JTextField();
+        txtCuentSal = new javax.swing.JTextField();
         label10 = new javax.swing.JLabel();
-        txtConEfecto5 = new javax.swing.JTextField();
+        txtCuentVal = new javax.swing.JTextField();
         btnBuscar1 = new javax.swing.JButton();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
@@ -214,20 +221,18 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         label7.setText("ID de proveedor");
         getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        txtConNombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtConNombre.setForeground(new java.awt.Color(255, 255, 255));
-        txtConNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtConNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 220, -1));
+        txtConId.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtConId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        getContentPane().add(txtConId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 220, -1));
 
-        txtConEfecto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtConEfecto.setForeground(new java.awt.Color(255, 255, 255));
-        txtConEfecto.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtConEfecto.addActionListener(new java.awt.event.ActionListener() {
+        txtCuentRef.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtCuentRef.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtCuentRef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConEfectoActionPerformed(evt);
+                txtCuentRefActionPerformed(evt);
             }
         });
-        getContentPane().add(txtConEfecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 160, -1));
+        getContentPane().add(txtCuentRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 160, -1));
 
         ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
@@ -236,62 +241,57 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         jLabel1.setText("ID de Concepto");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        txtConEfecto1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtConEfecto1.setForeground(new java.awt.Color(255, 255, 255));
-        txtConEfecto1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtConEfecto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 220, -1));
+        txtComId.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtComId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        getContentPane().add(txtComId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 220, -1));
 
-        txtConEfecto2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtConEfecto2.setForeground(new java.awt.Color(255, 255, 255));
-        txtConEfecto2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtConEfecto2.addActionListener(new java.awt.event.ActionListener() {
+        txtProvId.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtProvId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtProvId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConEfecto2ActionPerformed(evt);
+                txtProvIdActionPerformed(evt);
             }
         });
-        getContentPane().add(txtConEfecto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 220, -1));
+        getContentPane().add(txtProvId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 220, -1));
 
         label8.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label8.setText("Cuenta de documento");
         getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
-        txtConEfecto3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtConEfecto3.setForeground(new java.awt.Color(255, 255, 255));
-        txtConEfecto3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtConEfecto3.addActionListener(new java.awt.event.ActionListener() {
+        txtCuentDoc.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtCuentDoc.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtCuentDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConEfecto3ActionPerformed(evt);
+                txtCuentDocActionPerformed(evt);
             }
         });
-        getContentPane().add(txtConEfecto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 170, -1));
+        getContentPane().add(txtCuentDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 170, -1));
 
         label9.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label9.setText("Saldo de cuenta");
         getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
-        txtConEfecto4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtConEfecto4.setForeground(new java.awt.Color(255, 255, 255));
-        txtConEfecto4.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtConEfecto4.addActionListener(new java.awt.event.ActionListener() {
+        txtCuentSal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtCuentSal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtCuentSal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConEfecto4ActionPerformed(evt);
+                txtCuentSalActionPerformed(evt);
             }
         });
-        getContentPane().add(txtConEfecto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 220, -1));
+        getContentPane().add(txtCuentSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 220, -1));
 
         label10.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label10.setText("Valor de la cuenta");
         getContentPane().add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
-        txtConEfecto5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtConEfecto5.setForeground(new java.awt.Color(255, 255, 255));
-        txtConEfecto5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        txtConEfecto5.addActionListener(new java.awt.event.ActionListener() {
+        txtCuentVal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtCuentVal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtCuentVal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConEfecto5ActionPerformed(evt);
+                txtCuentValActionPerformed(evt);
             }
         });
-        getContentPane().add(txtConEfecto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 200, -1));
+        getContentPane().add(txtCuentVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 200, -1));
 
         btnBuscar1.setText("Buscar");
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
@@ -307,23 +307,23 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        clsCuentasPorPagar conceptoAEliminar = new clsCuentasPorPagar();
-        conceptoAEliminar.setConid(Integer.parseInt(txtbuscado.getText()));
-        cuentasDAO.delete(conceptoAEliminar);
+        clsCuentasPorPagar cuentasporpagarAEliminar = new clsCuentasPorPagar();
+        cuentasporpagarAEliminar.setConid(Integer.parseInt(txtbuscado.getText()));
+        cuentasDAO.delete(cuentasporpagarAEliminar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        clsCuentasPorPagar conceptoAInsertar = new clsCuentasPorPagar();
-        conceptoAInsertar.setConnombre(txtConNombre.getText());
-        conceptoAInsertar.setConefecto(txtConEfecto.getText());
-        if (ComboEstado.getSelectedItem().equals("Activo")) {
-            conceptoAInsertar.setConestatus(Boolean.parseBoolean("0"));
-        } else {
-            conceptoAInsertar.setConestatus(Boolean.parseBoolean("1"));
-        }
-        cuentasDAO.insert(conceptoAInsertar);
+        clsCuentasPorPagar cuentasporpagarAInsertar = new clsCuentasPorPagar();
+        cuentasporpagarAInsertar.setConid(Integer.parseInt(txtConId.getText()));
+        cuentasporpagarAInsertar.setComid(Integer.parseInt(txtComId.getText()));
+        cuentasporpagarAInsertar.setProvid(Integer.parseInt(txtProvId.getText()));
+        cuentasporpagarAInsertar.setCuentadoc(Integer.parseInt(txtCuentDoc.getText()));
+        cuentasporpagarAInsertar.setCuentasaldo(Integer.parseInt(txtCuentSal.getText()));
+        cuentasporpagarAInsertar.setCuentavalor(Integer.parseInt(txtCuentVal.getText()));
+        cuentasporpagarAInsertar.setCuentareferencia(Integer.parseInt(txtCuentRef.getText()));
+        cuentasDAO.insert(cuentasporpagarAInsertar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -335,25 +335,27 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        clsCuentasPorPagar conceptoAActualizar = new clsCuentasPorPagar();
-        conceptoAActualizar.setConid(Integer.parseInt(txtbuscado.getText()));
-        conceptoAActualizar.setConnombre(txtConNombre.getText());
-        conceptoAActualizar.setConefecto(txtConEfecto.getText());
-        if (ComboEstado.getSelectedItem().equals("Activo")) {
-            conceptoAActualizar.setConestatus(true);
-        } else {
-            conceptoAActualizar.setConestatus(false);
-        }
-        cuentasDAO.update(conceptoAActualizar);
+        clsCuentasPorPagar cuentasporpagarAActualizar = new clsCuentasPorPagar();
+        cuentasporpagarAActualizar.setConid(Integer.parseInt(txtbuscado.getText()));
+        cuentasporpagarAActualizar.setComid(Integer.parseInt(txtComId.getText()));
+        cuentasporpagarAActualizar.setProvid(Integer.parseInt(txtProvId.getText()));
+        cuentasporpagarAActualizar.setCuentadoc(Integer.parseInt(txtCuentDoc.getText()));
+        cuentasporpagarAActualizar.setCuentasaldo(Integer.parseInt(txtCuentSal.getText()));
+        cuentasporpagarAActualizar.setCuentavalor(Integer.parseInt(txtCuentVal.getText()));
+        cuentasporpagarAActualizar.setCuentareferencia(Integer.parseInt(txtCuentRef.getText())); 
+        cuentasDAO.update(cuentasporpagarAActualizar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        
-        ComboEstado.setSelectedItem("");
-        txtbuscado.setText("");
-        txtConNombre.setText("");
-        txtConEfecto.setText("");
+        txtConId.setText("");
+        txtComId.setText("");
+        txtProvId.setText("");
+        txtCuentDoc.setText("");
+        txtCuentSal.setText("");
+        txtCuentVal.setText("");
+        txtCuentRef.setText("");
         btnRegistrar.setEnabled(true);
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
@@ -378,25 +380,25 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtConEfectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConEfectoActionPerformed
+    private void txtCuentRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentRefActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtConEfectoActionPerformed
+    }//GEN-LAST:event_txtCuentRefActionPerformed
 
-    private void txtConEfecto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConEfecto2ActionPerformed
+    private void txtProvIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProvIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtConEfecto2ActionPerformed
+    }//GEN-LAST:event_txtProvIdActionPerformed
 
-    private void txtConEfecto3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConEfecto3ActionPerformed
+    private void txtCuentDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentDocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtConEfecto3ActionPerformed
+    }//GEN-LAST:event_txtCuentDocActionPerformed
 
-    private void txtConEfecto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConEfecto4ActionPerformed
+    private void txtCuentSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentSalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtConEfecto4ActionPerformed
+    }//GEN-LAST:event_txtCuentSalActionPerformed
 
-    private void txtConEfecto5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConEfecto5ActionPerformed
+    private void txtCuentValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentValActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtConEfecto5ActionPerformed
+    }//GEN-LAST:event_txtCuentValActionPerformed
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
         // TODO add your handling code here:
@@ -427,13 +429,13 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lbusu;
     private javax.swing.JTable tablaVendedores;
-    private javax.swing.JTextField txtConEfecto;
-    private javax.swing.JTextField txtConEfecto1;
-    private javax.swing.JTextField txtConEfecto2;
-    private javax.swing.JTextField txtConEfecto3;
-    private javax.swing.JTextField txtConEfecto4;
-    private javax.swing.JTextField txtConEfecto5;
-    private javax.swing.JTextField txtConNombre;
+    private javax.swing.JTextField txtComId;
+    private javax.swing.JTextField txtConId;
+    private javax.swing.JTextField txtCuentDoc;
+    private javax.swing.JTextField txtCuentRef;
+    private javax.swing.JTextField txtCuentSal;
+    private javax.swing.JTextField txtCuentVal;
+    private javax.swing.JTextField txtProvId;
     private javax.swing.JTextField txtbuscado;
     // End of variables declaration//GEN-END:variables
 }

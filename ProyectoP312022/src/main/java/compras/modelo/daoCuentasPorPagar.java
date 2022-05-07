@@ -19,7 +19,7 @@ import java.util.List;
 public class daoCuentasPorPagar {
 
     private static final String SQL_SELECT = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar";
-    private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid) VALUES (?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, comid, provid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia) VALUES (?,?,?,?,?,?,?)";
     private static final String SQL_UPDATE = "UPDATE tbl_cuentasporpagar SET cuentadoc = ?, cuentasaldo = ?, cuentavalor = ?, cuentareferencia =?, comid =?, provid =? WHERE tbl_cuentasporpagar.conid = ?";
     private static final String SQL_DELETE = "DELETE FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.conid = ?";
     private static final String SQL_QUERY = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar WHERE conid=?";
@@ -78,8 +78,8 @@ public class daoCuentasPorPagar {
             stmt.setInt(3, cuentas.getCuentasaldo());
             stmt.setInt(4, cuentas.getCuentavalor());
             stmt.setInt(5, cuentas.getCuentareferencia());
-            stmt.setInt(4, cuentas.getComid());
-            stmt.setInt(4, cuentas.getProvid());
+            stmt.setInt(6, cuentas.getComid());
+            stmt.setInt(7, cuentas.getProvid());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -109,7 +109,6 @@ public class daoCuentasPorPagar {
             stmt.setInt(4, cuentas.getCuentareferencia());
             stmt.setInt(5, cuentas.getComid());
             stmt.setInt(6, cuentas.getProvid());
-            stmt.setInt(7, cuentas.getConid());
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 

@@ -200,6 +200,11 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
 
         txtConEfecto.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtConEfecto.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
+        txtConEfecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConEfectoActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtConEfecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 220, -1));
 
         ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
@@ -281,6 +286,10 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtConEfectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConEfectoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConEfectoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
