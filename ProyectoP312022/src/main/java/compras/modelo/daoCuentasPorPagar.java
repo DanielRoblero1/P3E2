@@ -7,7 +7,7 @@ package compras.modelo;
 
 import compras.modelo.*;
 import seguridad.modelo.*;
-import compras.controlador.clsConcepto;
+import compras.controlador.clsCuentasPorPagar;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +18,18 @@ import java.util.List;
  */
 public class daoCuentasPorPagar {
 
-    private static final String SQL_SELECT = "SELECT conid, connombre, conefecto, conestatus FROM tbl_concepto";
+    private static final String SQL_SELECT = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_concepto";
     private static final String SQL_INSERT = "INSERT INTO tbl_concepto ( conid, connombre, conefecto, conestatus) VALUES (?,?,?,?)";
     private static final String SQL_UPDATE = "UPDATE tbl_concepto SET connombre = ?, conefecto = ?, conestatus = ? WHERE tbl_concepto.conid = ?";
     private static final String SQL_DELETE = "DELETE FROM tbl_concepto WHERE tbl_concepto.conid = ?";
     private static final String SQL_QUERY = "SELECT conid, connombre, conefecto, conestatus FROM tbl_concepto WHERE conid=?";
 
-    public List<clsConcepto> select() {
+    public List<clsCuentasPorPagar> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsConcepto concepto = null;
-        List<clsConcepto> concept = new ArrayList<clsConcepto>();
+        clsCuentasPorPagar concepto = null;
+        List<clsCuentasPorPagar> concept = new ArrayList<clsCuentasPorPagar>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -40,7 +40,7 @@ public class daoCuentasPorPagar {
                 String conefecto = rs.getString("conefecto");
                 boolean conestatus = rs.getBoolean("conestatus");
 
-                concepto = new clsConcepto();
+                concepto = new clsCuentasPorPagar();
                 concepto.setConid(conid);
                 concepto.setConnombre(connombre);
                 concepto.setConefecto(conefecto);
@@ -60,7 +60,7 @@ public class daoCuentasPorPagar {
         return concept;
     }
 
-    public int insert(clsConcepto concepto) {
+    public int insert(clsCuentasPorPagar concepto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -86,7 +86,7 @@ public class daoCuentasPorPagar {
     }
 
 
-    public int update(clsConcepto concepto) {
+    public int update(clsCuentasPorPagar concepto) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -112,7 +112,7 @@ public class daoCuentasPorPagar {
         return rows;
     }
 
-    public int delete(clsConcepto concepto) {
+    public int delete(clsCuentasPorPagar concepto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -134,7 +134,7 @@ public class daoCuentasPorPagar {
         return rows;
     }
 
-    public clsConcepto query(clsConcepto concepto) {
+    public clsCuentasPorPagar query(clsCuentasPorPagar concepto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -151,7 +151,7 @@ public class daoCuentasPorPagar {
                 String conefecto = rs.getString("conefecto");
                 boolean conestatus = rs.getBoolean("conestatus");
 
-                concepto = new clsConcepto();
+                concepto = new clsCuentasPorPagar();
                 concepto.setConid(conid);
                 concepto.setConnombre(connombre);
                 concepto.setConefecto(conefecto);

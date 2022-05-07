@@ -2,19 +2,25 @@ package compras.controlador;
 import compras.vista.*;
 
 public class clsCuentasPorPagar {
- private int conid;   
- private String connombre;
- private String conefecto;
-private Boolean conestatus;
+ private int conid; 
+ private int comid;
+ private int provid;
+ private int cuentadoc;
+ private Boolean cuentasaldo;
+ private Boolean cuentavalor;
+ private Boolean cuentareferencia;
 
     public clsCuentasPorPagar() {
     }
 
-    public clsCuentasPorPagar(int conid, String connombre, String conefecto, Boolean conestatus) {
+    public clsCuentasPorPagar(int conid, int cuentadoc, Boolean cuentasaldo, Boolean cuentavalor, Boolean cuentareferencia) {
         this.conid = conid;
-        this.connombre = connombre;
-        this.conefecto = conefecto;
-        this.conestatus = conestatus;
+        this.comid = comid;
+        this.provid = provid;
+        this.cuentadoc = cuentadoc;
+        this.cuentasaldo = cuentasaldo;
+        this.cuentavalor = cuentavalor;
+        this.cuentareferencia = cuentareferencia;
     }
 
     public int getConid() {
@@ -24,33 +30,57 @@ private Boolean conestatus;
     public void setConid(int conid) {
         this.conid = conid;
     }
-
-    public String getConnombre() {
-        return connombre;
+    
+    public int getComid() {
+        return comid;
     }
 
-    public void setConnombre(String connombre) {
-        this.connombre = connombre;
+    public void setComid(int comid) {
+        this.comid = comid;
     }
 
-    public String getConefecto() {
-        return conefecto;
+    public int getProvid() {
+        return provid;
     }
 
-    public void setConefecto(String conefecto) {
-        this.conefecto = conefecto;
+    public void setProvid(int Provid) {
+        this.provid = provid;
+    }
+    
+    public int getCuentadoc() {
+        return cuentadoc;
     }
 
-    public Boolean getConestatus() {
-        return conestatus;
+    public void setCuentadoc(int cuentadoc) {
+        this.cuentadoc = cuentadoc;
     }
 
-    public void setConestatus(Boolean conestatus) {
-        this.conestatus = conestatus;
+    public Boolean getCuentasaldo() {
+        return cuentasaldo;
     }
 
+    public void setCuentasaldo(Boolean cuentasaldo) {
+        this.cuentasaldo = cuentasaldo;
+    }
+
+    public Boolean getCuentavalor() {
+        return cuentavalor;
+    }
+
+    public void setCuentavalor(Boolean cuentavalor) {
+        this.cuentavalor = cuentavalor;
+    }
+
+    public Boolean getCuentareferencia() {
+        return cuentareferencia;
+    }
+
+    public void setCuentareferencia(Boolean cuentareferencia) {
+        this.cuentareferencia = cuentareferencia;
+    }
+    
     @Override
     public String toString() {
-        return "clsConcepto{" + "conid=" + conid + ", connombre=" + connombre + ", conefecto=" + conefecto + ", conestatus=" + conestatus + '}';
+        return "clsCuentasPorPagar{" + "conid=" + conid + ", comid=" + comid + ", provid=" + provid + ", cuentadoc=" + cuentadoc + ", cuentasaldo=" + cuentasaldo + ", cuentavalor=" + cuentavalor + ", cuentareferencia=" + cuentareferencia + '}';
     }
 }
