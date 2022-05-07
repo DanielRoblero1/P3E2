@@ -18,35 +18,41 @@ import java.util.List;
  */
 public class daoCuentasPorPagar {
 
-    private static final String SQL_SELECT = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_concepto";
-    private static final String SQL_INSERT = "INSERT INTO tbl_concepto ( conid, connombre, conefecto, conestatus) VALUES (?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_concepto SET connombre = ?, conefecto = ?, conestatus = ? WHERE tbl_concepto.conid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_concepto WHERE tbl_concepto.conid = ?";
-    private static final String SQL_QUERY = "SELECT conid, connombre, conefecto, conestatus FROM tbl_concepto WHERE conid=?";
+    private static final String SQL_SELECT = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar";
+    private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid) VALUES (?,?,?,?,?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE tbl_cuentasporpagar SET cuentadoc = ?, cuentasaldo = ?, cuentavalor = ?, cuentareferencia =?, comid =?, provid =? WHERE tbl_cuentasporpagar.conid = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.conid = ?";
+    private static final String SQL_QUERY = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar WHERE conid=?";
 
     public List<clsCuentasPorPagar> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsCuentasPorPagar concepto = null;
-        List<clsCuentasPorPagar> concept = new ArrayList<clsCuentasPorPagar>();
+        clsCuentasPorPagar cuentas = null;
+        List<clsCuentasPorPagar> cuent = new ArrayList<clsCuentasPorPagar>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int conid = rs.getInt("conid");
-                String connombre = rs.getString("connombre");
-                String conefecto = rs.getString("conefecto");
-                boolean conestatus = rs.getBoolean("conestatus");
+                int cuentadoc = rs.getInt("cuentadoc");
+                int cuentasaldo = rs.getInt("cuentasaldo");
+                int cuentavalor = rs.getInt("cuentavalor");
+                int cuentareferencia = rs.getInt("cuentareferencia");
+                int comid = rs.getInt("comid");
+                int Provid = rs.getInt("provid");
 
-                concepto = new clsCuentasPorPagar();
-                concepto.setConid(conid);
-                concepto.setConnombre(connombre);
-                concepto.setConefecto(conefecto);
-                concepto.setConestatus(conestatus);
+                cuentas = new clsCuentasPorPagar();
+                cuentas.setConid(conid);
+                cuentas.setCuentadoc(cuentadoc);
+                cuentas.setCuentasaldo(cuentasaldo);
+                cuentas.setCuentavalor(cuentavalor);
+                cuentas.setCuentareferencia(cuentareferencia);
+                cuentas.setComid(comid);
+                cuentas.setProvid(Provid);
                 
-                concept.add(concepto);
+                cuent.add(cuentas);
             }
 
         } catch (SQLException ex) {
@@ -57,20 +63,23 @@ public class daoCuentasPorPagar {
             clsConexion.close(conn);
         }
 
-        return concept;
+        return cuent;
     }
 
-    public int insert(clsCuentasPorPagar concepto) {
+    public int insert(clsCuentasPorPagar cuentas) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, concepto.getConid());
-            stmt.setString(2, concepto.getConnombre());
-            stmt.setString(3, concepto.getConefecto());
-            stmt.setBoolean(4, concepto.getConestatus());
+            stmt.setInt(1, cuentas.getConid());
+            stmt.setInt(2, cuentas.getCuentadoc());
+            stmt.setInt(3, cuentas.getCuentasaldo());
+            stmt.setInt(4, cuentas.getCuentavalor());
+            stmt.setInt(5, cuentas.getCuentareferencia());
+            stmt.setInt(4, cuentas.getComid());
+            stmt.setInt(4, cuentas.getProvid());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -86,7 +95,7 @@ public class daoCuentasPorPagar {
     }
 
 
-    public int update(clsCuentasPorPagar concepto) {
+    public int update(clsCuentasPorPagar cuentas) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -94,11 +103,13 @@ public class daoCuentasPorPagar {
             conn = clsConexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setInt(4, concepto.getConid());
-            stmt.setString(1, concepto.getConnombre());
-            stmt.setString(2, concepto.getConefecto());
-            stmt.setBoolean(3, concepto.getConestatus());
-
+            stmt.setInt(1, cuentas.getCuentadoc());
+            stmt.setInt(2, cuentas.getCuentasaldo());
+            stmt.setInt(3, cuentas.getCuentavalor());
+            stmt.setInt(4, cuentas.getCuentareferencia());
+            stmt.setInt(5, cuentas.getComid());
+            stmt.setInt(6, cuentas.getProvid());
+            stmt.setInt(7, cuentas.getConid());
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
@@ -112,7 +123,7 @@ public class daoCuentasPorPagar {
         return rows;
     }
 
-    public int delete(clsCuentasPorPagar concepto) {
+    public int delete(clsCuentasPorPagar cuentas) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -121,7 +132,7 @@ public class daoCuentasPorPagar {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, concepto.getConid());
+            stmt.setInt(1, cuentas.getConid());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -134,7 +145,7 @@ public class daoCuentasPorPagar {
         return rows;
     }
 
-    public clsCuentasPorPagar query(clsCuentasPorPagar concepto) {
+    public clsCuentasPorPagar query(clsCuentasPorPagar cuentas) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -142,20 +153,26 @@ public class daoCuentasPorPagar {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setInt(1, concepto.getConid());
+            stmt.setInt(1, cuentas.getConid());
              
             rs = stmt.executeQuery();
             while (rs.next()) {
                 int conid = rs.getInt("conid");
-                String connombre = rs.getString("connombre");
-                String conefecto = rs.getString("conefecto");
-                boolean conestatus = rs.getBoolean("conestatus");
+                int cuentadoc = rs.getInt("cuentadoc");
+                int cuentasaldo = rs.getInt("cuentasaldo");
+                int cuentavalor = rs.getInt("cuentavalor");
+                int cuentareferencia = rs.getInt("cuentareferencia");
+                int comid = rs.getInt ("comid");
+                int provid = rs.getInt("provid");
 
-                concepto = new clsCuentasPorPagar();
-                concepto.setConid(conid);
-                concepto.setConnombre(connombre);
-                concepto.setConefecto(conefecto);
-                concepto.setConestatus(conestatus);
+                cuentas = new clsCuentasPorPagar();
+                cuentas.setConid(conid);
+                cuentas.setCuentadoc(cuentadoc);
+                cuentas.setCuentasaldo(cuentasaldo);
+                cuentas.setCuentavalor(cuentasaldo);
+                cuentas.setCuentareferencia(cuentavalor);
+                cuentas.setComid(comid);
+                cuentas.setProvid(provid);
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -167,6 +184,6 @@ public class daoCuentasPorPagar {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return concepto;
+        return cuentas;
     }
 }

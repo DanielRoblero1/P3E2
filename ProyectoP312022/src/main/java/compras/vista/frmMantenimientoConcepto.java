@@ -22,7 +22,7 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
 
   
 
-    public void llenadoDeTablas() {
+     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID Concepto");
         modelo.addColumn("Nombre Concepto");

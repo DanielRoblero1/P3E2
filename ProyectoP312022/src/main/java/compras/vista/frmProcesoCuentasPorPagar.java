@@ -7,8 +7,8 @@ package compras.vista;
 
 import seguridad.vista.*;
 import compras.vista.*;
-import compras.modelo.daoConcepto;
-import compras.controlador.clsConcepto;
+import compras.modelo.daoCuentasPorPagar;
+import compras.controlador.clsCuentasPorPagar;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -26,11 +26,14 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID Concepto");
-        modelo.addColumn("Nombre Concepto");
-        modelo.addColumn("Efecto Concepto");
-        modelo.addColumn("Estado Concepto");
-        daoConcepto conceptoDAO = new daoConcepto();
-        List<clsConcepto> concepto = conceptoDAO.select();
+        modelo.addColumn("ID Compras");
+        modelo.addColumn("ID Proveedor");
+        modelo.addColumn("Cuenta de documento");
+        modelo.addColumn("Saldo de cuenta");
+        modelo.addColumn("Valor de cuenta");
+        modelo.addColumn("Referencia de cuenta");
+        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
+        List<clsCuentasPorPagar> concepto = cuentasDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[5];
         for (int i = 0; i < concepto.size(); i++) {
@@ -44,10 +47,10 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
     }
 
     public void buscarConcepto() {
-        clsConcepto conceptoAConsultar = new clsConcepto();
-        daoConcepto conceptoDAO = new daoConcepto();
+        clsCuentasPorPagar conceptoAConsultar = new clsCuentasPorPagar();
+        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         conceptoAConsultar.setConid(Integer.parseInt(txtbuscado.getText()));
-        conceptoAConsultar = conceptoDAO.query(conceptoAConsultar);
+        conceptoAConsultar = cuentasDAO.query(conceptoAConsultar);
         txtConNombre.setText(conceptoAConsultar.getConnombre());
         txtConEfecto.setText(conceptoAConsultar.getConefecto());
         ComboEstado.setSelectedItem(conceptoAConsultar.getConestatus());
@@ -139,7 +142,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label1.setText("Cuentas por pagar");
-        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
+        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +188,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaVendedores);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 50, 610, 430));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 50, 860, 430));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label5.setText("Referencia de la cuenta");
@@ -227,7 +230,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         getContentPane().add(txtConEfecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 160, -1));
 
         ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 480, -1, -1));
+        getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("ID de Concepto");
@@ -303,16 +306,16 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        daoConcepto conceptoDAO = new daoConcepto();
-        clsConcepto conceptoAEliminar = new clsConcepto();
+        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
+        clsCuentasPorPagar conceptoAEliminar = new clsCuentasPorPagar();
         conceptoAEliminar.setConid(Integer.parseInt(txtbuscado.getText()));
-        conceptoDAO.delete(conceptoAEliminar);
+        cuentasDAO.delete(conceptoAEliminar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoConcepto conceptoDAO = new daoConcepto();
-        clsConcepto conceptoAInsertar = new clsConcepto();
+        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
+        clsCuentasPorPagar conceptoAInsertar = new clsCuentasPorPagar();
         conceptoAInsertar.setConnombre(txtConNombre.getText());
         conceptoAInsertar.setConefecto(txtConEfecto.getText());
         if (ComboEstado.getSelectedItem().equals("Activo")) {
@@ -320,7 +323,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         } else {
             conceptoAInsertar.setConestatus(Boolean.parseBoolean("1"));
         }
-        conceptoDAO.insert(conceptoAInsertar);
+        cuentasDAO.insert(conceptoAInsertar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -331,8 +334,8 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        daoConcepto conceptoDAO = new daoConcepto();
-        clsConcepto conceptoAActualizar = new clsConcepto();
+        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
+        clsCuentasPorPagar conceptoAActualizar = new clsCuentasPorPagar();
         conceptoAActualizar.setConid(Integer.parseInt(txtbuscado.getText()));
         conceptoAActualizar.setConnombre(txtConNombre.getText());
         conceptoAActualizar.setConefecto(txtConEfecto.getText());
@@ -341,7 +344,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         } else {
             conceptoAActualizar.setConestatus(false);
         }
-        conceptoDAO.update(conceptoAActualizar);
+        cuentasDAO.update(conceptoAActualizar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 

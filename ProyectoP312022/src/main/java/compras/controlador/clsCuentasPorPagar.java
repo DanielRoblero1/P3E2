@@ -6,14 +6,14 @@ public class clsCuentasPorPagar {
  private int comid;
  private int provid;
  private int cuentadoc;
- private Boolean cuentasaldo;
- private Boolean cuentavalor;
- private Boolean cuentareferencia;
+ private int cuentasaldo;
+ private int cuentavalor;
+ private int cuentareferencia;
 
     public clsCuentasPorPagar() {
     }
 
-    public clsCuentasPorPagar(int conid, int cuentadoc, Boolean cuentasaldo, Boolean cuentavalor, Boolean cuentareferencia) {
+    public clsCuentasPorPagar(int conid, int cuentadoc, int cuentasaldo, int cuentavalor, int cuentareferencia) {
         this.conid = conid;
         this.comid = comid;
         this.provid = provid;
@@ -55,27 +55,27 @@ public class clsCuentasPorPagar {
         this.cuentadoc = cuentadoc;
     }
 
-    public Boolean getCuentasaldo() {
+    public int getCuentasaldo() {
         return cuentasaldo;
     }
 
-    public void setCuentasaldo(Boolean cuentasaldo) {
+    public void setCuentasaldo(int cuentasaldo) {
         this.cuentasaldo = cuentasaldo;
     }
 
-    public Boolean getCuentavalor() {
+    public int getCuentavalor() {
         return cuentavalor;
     }
 
-    public void setCuentavalor(Boolean cuentavalor) {
+    public void setCuentavalor(int cuentavalor) {
         this.cuentavalor = cuentavalor;
     }
 
-    public Boolean getCuentareferencia() {
+    public int getCuentareferencia() {
         return cuentareferencia;
     }
 
-    public void setCuentareferencia(Boolean cuentareferencia) {
+    public void setCuentareferencia(int cuentareferencia) {
         this.cuentareferencia = cuentareferencia;
     }
     
