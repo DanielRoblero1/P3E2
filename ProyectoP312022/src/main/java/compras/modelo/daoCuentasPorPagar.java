@@ -19,7 +19,7 @@ import java.util.List;
 public class daoCuentasPorPagar {
 
     private static final String SQL_SELECT = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar";
-    private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, comid, provid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia) VALUES (?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( comid, provid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia) VALUES (?,?,?,?,?,?)";
     private static final String SQL_UPDATE = "UPDATE tbl_cuentasporpagar SET cuentadoc = ?, cuentasaldo = ?, cuentavalor = ?, cuentareferencia =?, comid =?, provid =? WHERE tbl_cuentasporpagar.conid = ?";
     private static final String SQL_DELETE = "DELETE FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.conid = ?";
     private static final String SQL_QUERY = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar WHERE conid=?";
@@ -44,7 +44,7 @@ public class daoCuentasPorPagar {
                 int Provid = rs.getInt("provid");
 
                 cuentas = new clsCuentasPorPagar();
-                cuentas.setConid(conid);
+              //  cuentas.setConid(conid);
                 cuentas.setCuentadoc(cuentadoc);
                 cuentas.setCuentasaldo(cuentasaldo);
                 cuentas.setCuentavalor(cuentavalor);
@@ -73,13 +73,13 @@ public class daoCuentasPorPagar {
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setInt(1, cuentas.getConid());
-            stmt.setInt(2, cuentas.getCuentadoc());
-            stmt.setInt(3, cuentas.getCuentasaldo());
-            stmt.setInt(4, cuentas.getCuentavalor());
-            stmt.setInt(5, cuentas.getCuentareferencia());
-            stmt.setInt(6, cuentas.getComid());
-            stmt.setInt(7, cuentas.getProvid());
+            //stmt.setInt(1, cuentas.getConid());
+            stmt.setInt(1, cuentas.getCuentadoc());
+            stmt.setInt(2, cuentas.getCuentasaldo());
+            stmt.setInt(3, cuentas.getCuentavalor());
+            stmt.setInt(4, cuentas.getCuentareferencia());
+            stmt.setInt(5, cuentas.getComid());
+            stmt.setInt(6, cuentas.getProvid());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();

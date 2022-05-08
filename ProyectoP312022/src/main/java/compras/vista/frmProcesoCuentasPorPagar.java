@@ -35,15 +35,14 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         List<clsCuentasPorPagar> cuentaporpagar = cuentasDAO.select();
         tablaVendedores.setModel(modelo);
-        String[] dato = new String[7];
+        String[] dato = new String[6];
         for (int i = 0; i < cuentaporpagar.size(); i++) {
-            dato[0] = Integer.toString(cuentaporpagar.get(i).getConid());
-            dato[1] = Integer.toString(cuentaporpagar.get(i).getComid());
-            dato[2] = Integer.toString(cuentaporpagar.get(i).getProvid());
-            dato[3] = Integer.toString(cuentaporpagar.get(i).getCuentadoc());
-            dato[4] = Integer.toString(cuentaporpagar.get(i).getCuentasaldo());
-            dato[5] = Integer.toString(cuentaporpagar.get(i).getCuentavalor());
-            dato[6] = Integer.toString(cuentaporpagar.get(i).getCuentareferencia());
+            dato[0] = Integer.toString(cuentaporpagar.get(i).getComid());
+            dato[1] = Integer.toString(cuentaporpagar.get(i).getProvid());
+            dato[2] = Integer.toString(cuentaporpagar.get(i).getCuentadoc());
+            dato[3] = Integer.toString(cuentaporpagar.get(i).getCuentasaldo());
+            dato[4] = Integer.toString(cuentaporpagar.get(i).getCuentavalor());
+            dato[5] = Integer.toString(cuentaporpagar.get(i).getCuentareferencia());
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
