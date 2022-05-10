@@ -24,9 +24,10 @@ public class daoCompras {
     private static final String SQL_INSERT = "INSERT INTO tbl_compraencabezado ( provid, comserie, ordid) VALUES ( ?, ?, ?)";
     private static final String SQL_INSERT2 = "INSERT INTO tbl_compradetalle (prodid, ordcantidad, ordcosto, comfechaemi, comfechavenci) VALUES (?, ?, ?,?, ?)";
     private static final String SQL_UPDATE = "UPDATE tbl_producto SET provid = ?,prodnombre = ?,prodmarca = ?, prodprecio = ?, Prodlinea = ?, prodexistencia = ? WHERE tbl_producto.prodid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_producto WHERE tbl_producto.prodid = ?";
-    private static final String SQL_QUERY = "SELECT prodid, provid, prodnombre,prodmarca,prodprecio,prodlinea,prodexistencia FROM tbl_producto WHERE tbl_producto.prodid = ?";
-
+    private static final String SQL_DELETE = "DELETE FROM tbl_compraencabezado WHERE tbl_compraencabezado.comid = ?";
+    private static final String SQL_DELETE2 = "DELETE FROM tbl_compradetalle WHERE tbl_compradetalle.comdetid = ?";
+    private static final String SQL_QUERY = "SELECT comid ,provid, comserie, ordid FROM tbl_compraencabezado WHERE tbl_compraencabezado.comid = ?";
+    private static final String SQL_QUERY2 = "SELECT prodid, ordcantidad, ordcosto,comfechaemi,comfechavenci FROM tbl_compradetalle WHERE tbl_compradetalle.comdetid = ?";
     public List<clsCompras> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -177,7 +178,7 @@ public class daoCompras {
         return rows;
     }
 
-    public int delete(clsProducto producto) {
+    public int delete(clsCompras producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -186,7 +187,28 @@ public class daoCompras {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, producto.getProdid());
+            stmt.setInt(1, producto.getComid());
+            rows = stmt.executeUpdate();
+            System.out.println("Registros eliminados:" + rows);
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            clsConexion.close(stmt);
+            clsConexion.close(conn);
+        }
+
+        return rows;
+    }
+    public int delete2(clsCompras producto) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+
+        try {
+            conn = clsConexion.getConnection();
+            System.out.println("Ejecutando query:" + SQL_DELETE2);
+            stmt = conn.prepareStatement(SQL_DELETE2);
+            stmt.setInt(1, producto.getComid());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -199,7 +221,7 @@ public class daoCompras {
         return rows;
     }
 
-    public clsProducto query(clsProducto producto) {
+    public clsCompras query(clsCompras compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -207,24 +229,20 @@ public class daoCompras {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setInt(1, producto.getProdid());
+            stmt.setInt(1, compras.getComid());
              
             rs = stmt.executeQuery();
             while (rs.next()) {
+                 int comid = rs.getInt("comid");
                 int provid = rs.getInt("provid");
-                String prodnombre = rs.getString("prodnombre");
-                String prodmarca = rs.getString("prodmarca");
-                int prodprecio = rs.getInt("prodprecio");
-                String prodlinea = rs.getString("prodlinea");
-                String prodexistencia = rs.getString("prodexistencia");
+                int comserie = rs.getInt("comserie");
+                int ordid = rs.getInt("ordid");
 
-                producto = new clsProducto();
-                producto.setProvid(provid);
-                producto.setProdnombre(prodnombre);
-                producto.setProdmarca(prodmarca);
-                producto.setProdprecio(prodprecio);
-                producto.setProdlinea(prodlinea);
-                producto.setProdexistencia(prodexistencia);
+                compras = new clsCompras();
+                compras.setComid(comid);
+                compras.setProvid(provid);
+                compras.setComserie(comserie);
+                compras.setOrdid(ordid);
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {
@@ -236,6 +254,46 @@ public class daoCompras {
         }
 
         //return personas;  // Si se utiliza un ArrayList
-        return producto;
+        return compras;
     }
+        public clsCompras query2(clsCompras compras) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = clsConexion.getConnection();
+            System.out.println("Ejecutando query:" + SQL_QUERY2);
+            stmt = conn.prepareStatement(SQL_QUERY2);
+            stmt.setInt(1, compras.getComid());
+             
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                 int prodid = rs.getInt("prodid");
+                int ordcantidad = rs.getInt("ordcantidad");
+                int ordcosto = rs.getInt("ordcosto");
+                String comfechaemi = rs.getString("comfechaemi");
+                String comfechavenci = rs.getString("comfechavenci");
+                
+                compras = new clsCompras();
+                compras.setProdid(prodid);
+                compras.setOrdcantidad(ordcantidad);
+                compras.setOrdcosto(ordcosto);
+                compras.setComfechaemi(comfechaemi);
+                compras.setComfechavenci(comfechavenci);
+            }
+            //System.out.println("Registros buscado:" + persona);
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            clsConexion.close(rs);
+            clsConexion.close(stmt);
+            clsConexion.close(conn);
+        }
+
+        //return personas;  // Si se utiliza un ArrayList
+        return compras;
+    }
+    
+    
+    
 }
