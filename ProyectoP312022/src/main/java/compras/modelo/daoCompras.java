@@ -8,7 +8,6 @@ package compras.modelo;
 import compras.modelo.*;
 import seguridad.modelo.*;
 import compras.controlador.clsCompras;
-import compras.controlador.clsProducto;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,8 @@ public class daoCompras {
     private static final String SQL_SELECT2 = "SELECT prodid, ordcantidad, ordcosto,comfechaemi,comfechavenci FROM tbl_compradetalle";
     private static final String SQL_INSERT = "INSERT INTO tbl_compraencabezado ( provid, comserie, ordid) VALUES ( ?, ?, ?)";
     private static final String SQL_INSERT2 = "INSERT INTO tbl_compradetalle (prodid, ordcantidad, ordcosto, comfechaemi, comfechavenci) VALUES (?, ?, ?,?, ?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_producto SET provid = ?,prodnombre = ?,prodmarca = ?, prodprecio = ?, Prodlinea = ?, prodexistencia = ? WHERE tbl_producto.prodid = ?";
+    private static final String SQL_UPDATE = "UPDATE tbl_compraencabezado SET provid = ?, comserie = ?, ordid = ? WHERE tbl_compraencabezado.comid = ?";
+    private static final String SQL_UPDATE2 = "UPDATE tbl_compradetalle SET prodid = ?, ordcantidad = ?, ordcosto = ?, comfechaemi = ?, comfechavenci = ? WHERE tbl_compradetalle.comdetid = ?";
     private static final String SQL_DELETE = "DELETE FROM tbl_compraencabezado WHERE tbl_compraencabezado.comid = ?";
     private static final String SQL_DELETE2 = "DELETE FROM tbl_compradetalle WHERE tbl_compradetalle.comdetid = ?";
     private static final String SQL_QUERY = "SELECT comid ,provid, comserie, ordid FROM tbl_compraencabezado WHERE tbl_compraencabezado.comid = ?";
@@ -150,7 +150,7 @@ public class daoCompras {
     }
 
 
-    public int update(clsProducto producto) {
+    public int update(clsCompras producto) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -159,12 +159,37 @@ public class daoCompras {
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setInt(1, producto.getProvid());
-            stmt.setString(2, producto.getProdnombre());
-            stmt.setString(3, producto.getProdmarca());
-            stmt.setInt(4, producto.getProdprecio());
-            stmt.setString(5, producto.getProdlinea());
-            stmt.setString(6, producto.getProdexistencia());                      
-            stmt.setInt(7, producto.getProdid());
+            stmt.setInt(2, producto.getComserie());
+            stmt.setInt(3, producto.getOrdid());
+            stmt.setInt(4, producto.getComid());
+                        
+            rows = stmt.executeUpdate();
+            System.out.println("Registros actualizado:" + rows);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            clsConexion.close(stmt);
+            clsConexion.close(conn);
+        }
+
+        return rows;
+    }
+        public int update2(clsCompras producto) {
+       Connection conn = null;
+        PreparedStatement stmt = null;
+        int rows = 0;
+        try {
+            conn = clsConexion.getConnection();
+            System.out.println("ejecutando query: " + SQL_UPDATE2);
+            stmt = conn.prepareStatement(SQL_UPDATE2);
+            stmt.setInt(1, producto.getProdid());
+            stmt.setInt(2, producto.getOrdcantidad());
+            stmt.setInt(3, producto.getOrdcosto());
+            stmt.setString(4, producto.getComfechaemi());
+            stmt.setString(5, producto.getComfechavenci());
+            stmt.setInt(6, producto.getComid());
+                        
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
