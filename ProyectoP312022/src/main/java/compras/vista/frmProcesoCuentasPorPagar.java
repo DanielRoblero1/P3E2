@@ -25,6 +25,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
+         modelo.addColumn("ID CuentaPagar");
         modelo.addColumn("ID Concepto");
         modelo.addColumn("ID Compras");
         modelo.addColumn("ID Proveedor");
@@ -35,14 +36,15 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         List<clsCuentasPorPagar> cuentaporpagar = cuentasDAO.select();
         tablaVendedores.setModel(modelo);
-        String[] dato = new String[6];
+        String[] dato = new String[7];
         for (int i = 0; i < cuentaporpagar.size(); i++) {
-            dato[0] = Integer.toString(cuentaporpagar.get(i).getComid());
-            dato[1] = Integer.toString(cuentaporpagar.get(i).getProvid());
-            dato[2] = Integer.toString(cuentaporpagar.get(i).getCuentadoc());
-            dato[3] = Integer.toString(cuentaporpagar.get(i).getCuentasaldo());
-            dato[4] = Integer.toString(cuentaporpagar.get(i).getCuentavalor());
-            dato[5] = Integer.toString(cuentaporpagar.get(i).getCuentareferencia());
+            dato[0] = Integer.toString(cuentaporpagar.get(i).getCuentapagarid());
+            dato[1] = Integer.toString(cuentaporpagar.get(i).getComid());
+            dato[2] = Integer.toString(cuentaporpagar.get(i).getProvid());
+            dato[3] = Integer.toString(cuentaporpagar.get(i).getCuentadoc());
+            dato[4] = Integer.toString(cuentaporpagar.get(i).getCuentasaldo());
+            dato[5] = Integer.toString(cuentaporpagar.get(i).getCuentavalor());
+            dato[6] = Integer.toString(cuentaporpagar.get(i).getCuentareferencia());
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
@@ -51,7 +53,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
     public void buscarCuenta() {
         clsCuentasPorPagar cuentasporpagarAConsultar = new clsCuentasPorPagar();
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        cuentasporpagarAConsultar.setConid(Integer.parseInt(txtbuscado.getText()));
+        cuentasporpagarAConsultar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
         cuentasporpagarAConsultar = cuentasDAO.query(cuentasporpagarAConsultar);
         txtConId.setText(String.valueOf(cuentasporpagarAConsultar.getConid()));
         txtComId.setText(String.valueOf(cuentasporpagarAConsultar.getComid()));
@@ -234,7 +236,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         getContentPane().add(txtCuentRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 160, -1));
 
         ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
+        getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 490, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("ID de Concepto");
@@ -307,7 +309,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         clsCuentasPorPagar cuentasporpagarAEliminar = new clsCuentasPorPagar();
-        cuentasporpagarAEliminar.setConid(Integer.parseInt(txtbuscado.getText()));
+        cuentasporpagarAEliminar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
         cuentasDAO.delete(cuentasporpagarAEliminar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -335,7 +337,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
 //        // TODO add your handling code here:
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         clsCuentasPorPagar cuentasporpagarAActualizar = new clsCuentasPorPagar();
-        cuentasporpagarAActualizar.setConid(Integer.parseInt(txtbuscado.getText()));
+        cuentasporpagarAActualizar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
         cuentasporpagarAActualizar.setComid(Integer.parseInt(txtComId.getText()));
         cuentasporpagarAActualizar.setProvid(Integer.parseInt(txtProvId.getText()));
         cuentasporpagarAActualizar.setCuentadoc(Integer.parseInt(txtCuentDoc.getText()));

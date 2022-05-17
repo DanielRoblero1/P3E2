@@ -18,12 +18,11 @@ import java.util.List;
  */
 public class daoCuentasPorPagar {
 
-    private static final String SQL_SELECT = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpa"
-            + "gar";
+    private static final String SQL_SELECT = "SELECT cuentapagarid, conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar";
     private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, comid, provid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia) VALUES (?,?,?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_cuentasporpagar SET cuentadoc = ?, cuentasaldo = ?, cuentavalor = ?, cuentareferencia =?, comid =?, provid =? WHERE tbl_cuentasporpagar.conid = ?";
-    private static final String SQL_DELETE = "DELETE FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.conid = ?";
-    private static final String SQL_QUERY = "SELECT conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar WHERE conid=?";
+    private static final String SQL_UPDATE = "UPDATE tbl_cuentasporpagar SET cuentadoc = ?, cuentasaldo = ?, cuentavalor = ?, cuentareferencia =?, comid =?, provid =? WHERE tbl_cuentasporpagar.cuentapagarid = ?";
+    private static final String SQL_DELETE = "DELETE FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.cuentapagarid = ?";
+    private static final String SQL_QUERY = "SELECT cuentapagarid, conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.cuentapagarid=?";
 
     public List<clsCuentasPorPagar> select() {
         Connection conn = null;
@@ -36,6 +35,7 @@ public class daoCuentasPorPagar {
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
             while (rs.next()) {
+                int cuentapagarid = rs.getInt("cuentapagarid");
                 int conid = rs.getInt("conid");
                 int cuentadoc = rs.getInt("cuentadoc");
                 int cuentasaldo = rs.getInt("cuentasaldo");
@@ -45,6 +45,7 @@ public class daoCuentasPorPagar {
                 int Provid = rs.getInt("provid");
 
                 cuentas = new clsCuentasPorPagar();
+                cuentas.setCuentapagarid(cuentapagarid);
                 cuentas.setConid(conid);
                 cuentas.setCuentadoc(cuentadoc);
                 cuentas.setCuentasaldo(cuentasaldo);
@@ -132,7 +133,7 @@ public class daoCuentasPorPagar {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_DELETE);
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, cuentas.getConid());
+            stmt.setInt(1, cuentas.getCuentapagarid());
             rows = stmt.executeUpdate();
             System.out.println("Registros eliminados:" + rows);
         } catch (SQLException ex) {
@@ -153,10 +154,11 @@ public class daoCuentasPorPagar {
             conn = clsConexion.getConnection();
             System.out.println("Ejecutando query:" + SQL_QUERY);
             stmt = conn.prepareStatement(SQL_QUERY);
-            stmt.setInt(1, cuentas.getConid());
+            stmt.setInt(1, cuentas.getCuentapagarid());
              
             rs = stmt.executeQuery();
             while (rs.next()) {
+                int cuentapagarid = rs.getInt("cuentapagarid");
                 int conid = rs.getInt("conid");
                 int cuentadoc = rs.getInt("cuentadoc");
                 int cuentasaldo = rs.getInt("cuentasaldo");
@@ -166,6 +168,7 @@ public class daoCuentasPorPagar {
                 int provid = rs.getInt("provid");
 
                 cuentas = new clsCuentasPorPagar();
+                cuentas.setCuentapagarid(cuentapagarid);
                 cuentas.setConid(conid);
                 cuentas.setCuentadoc(cuentadoc);
                 cuentas.setCuentasaldo(cuentasaldo);

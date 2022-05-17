@@ -2,6 +2,7 @@ package compras.controlador;
 import compras.vista.*;
 
 public class clsCuentasPorPagar {
+ private int cuentapagarid;   
  private int conid; 
  private int comid;
  private int provid;
@@ -13,7 +14,8 @@ public class clsCuentasPorPagar {
     public clsCuentasPorPagar() {
     }
 
-    public clsCuentasPorPagar(int conid, int cuentadoc, int cuentasaldo, int cuentavalor, int cuentareferencia) {
+    public clsCuentasPorPagar(int cuentapagarid, int conid, int cuentadoc, int cuentasaldo, int cuentavalor, int cuentareferencia) {
+        this.cuentapagarid = cuentapagarid;
         this.conid = conid;
         this.comid = comid;
         this.provid = provid;
@@ -23,6 +25,14 @@ public class clsCuentasPorPagar {
         this.cuentareferencia = cuentareferencia;
     }
 
+    public int getCuentapagarid() {
+        return cuentapagarid;
+    }
+
+    public void setCuentapagarid(int cuentapagarid) {
+        this.cuentapagarid = cuentapagarid;
+    }
+    
     public int getConid() {
         return conid;
     }
@@ -81,6 +91,6 @@ public class clsCuentasPorPagar {
     
     @Override
     public String toString() {
-        return "clsCuentasPorPagar{" + "conid=" + conid + ", comid=" + comid + ", provid=" + provid + ", cuentadoc=" + cuentadoc + ", cuentasaldo=" + cuentasaldo + ", cuentavalor=" + cuentavalor + ", cuentareferencia=" + cuentareferencia + '}';
+        return "clsCuentasPorPagar{" + "cuentapagarid=" + cuentapagarid + "conid=" + conid + ", comid=" + comid + ", provid=" + provid + ", cuentadoc=" + cuentadoc + ", cuentasaldo=" + cuentasaldo + ", cuentavalor=" + cuentavalor + ", cuentareferencia=" + cuentareferencia + '}';
     }
 }
