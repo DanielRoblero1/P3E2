@@ -94,12 +94,10 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         tablaVendedores = new javax.swing.JTable();
         label5 = new javax.swing.JLabel();
         lb = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         label6 = new javax.swing.JLabel();
         label7 = new javax.swing.JLabel();
         txtConId = new javax.swing.JTextField();
         txtCuentRef = new javax.swing.JTextField();
-        ComboEstado = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         txtComId = new javax.swing.JTextField();
         txtProvId = new javax.swing.JTextField();
@@ -109,7 +107,9 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         txtCuentSal = new javax.swing.JTextField();
         label10 = new javax.swing.JLabel();
         txtCuentVal = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         btnBuscar1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -128,7 +128,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 95, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 100, 30));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +136,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 95, -1));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 95, 30));
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 102));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -146,11 +146,11 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 40, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 40, 30));
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label1.setText("Cuentas por pagar");
-        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, -1));
+        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, -1, -1));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -158,14 +158,19 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 100, -1));
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 100, 30));
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Codigo producto a buscar:");
-        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, -1, -1));
+        label3.setText("Codigo cuenta a buscar:");
+        getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 160, 20));
 
         txtbuscado.setBackground(new java.awt.Color(204, 255, 255));
-        getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 102, -1));
+        txtbuscado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbuscadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 102, 20));
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +178,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 95, -1));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 95, 30));
 
         tablaVendedores.setBackground(new java.awt.Color(204, 255, 255));
         tablaVendedores.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -196,35 +201,27 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaVendedores);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 50, 860, 430));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 1000, 250));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label5.setText("Referencia de la cuenta");
-        getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        getContentPane().add(label5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 40));
 
         lb.setForeground(new java.awt.Color(204, 204, 204));
         lb.setText(".");
-        getContentPane().add(lb, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 20, 13, -1));
-
-        jButton2.setText("Ayuda");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 100, -1));
+        getContentPane().add(lb, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 13, -1));
 
         label6.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label6.setText("ID de compras");
-        getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        getContentPane().add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, 30));
 
         label7.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label7.setText("ID de proveedor");
-        getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        getContentPane().add(label7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, -1, 30));
 
         txtConId.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtConId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtConId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 220, -1));
+        getContentPane().add(txtConId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 130, 20));
 
         txtCuentRef.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtCuentRef.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -233,18 +230,15 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 txtCuentRefActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCuentRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 160, -1));
-
-        ComboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        getContentPane().add(ComboEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 490, -1, 30));
+        getContentPane().add(txtCuentRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 100, 20));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("ID de Concepto");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 30));
 
         txtComId.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtComId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
-        getContentPane().add(txtComId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 220, -1));
+        getContentPane().add(txtComId, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 100, 20));
 
         txtProvId.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtProvId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -253,11 +247,11 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 txtProvIdActionPerformed(evt);
             }
         });
-        getContentPane().add(txtProvId, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 220, -1));
+        getContentPane().add(txtProvId, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 130, 20));
 
         label8.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        label8.setText("Cuenta de documento");
-        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        label8.setText("No. Cuenta");
+        getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, 30));
 
         txtCuentDoc.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtCuentDoc.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -266,11 +260,11 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 txtCuentDocActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCuentDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 170, -1));
+        getContentPane().add(txtCuentDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 130, 20));
 
         label9.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label9.setText("Saldo de cuenta");
-        getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+        getContentPane().add(label9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         txtCuentSal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtCuentSal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -279,11 +273,11 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 txtCuentSalActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCuentSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 220, -1));
+        getContentPane().add(txtCuentSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 120, 20));
 
         label10.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label10.setText("Valor de la cuenta");
-        getContentPane().add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
+        getContentPane().add(label10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, 40));
 
         txtCuentVal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtCuentVal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));
@@ -292,7 +286,15 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 txtCuentValActionPerformed(evt);
             }
         });
-        getContentPane().add(txtCuentVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 200, -1));
+        getContentPane().add(txtCuentVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 130, 20));
+
+        jButton2.setText("Ayuda");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(887, 295, 100, 30));
 
         btnBuscar1.setText("Buscar");
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
@@ -300,7 +302,11 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 100, 30));
+        getContentPane().add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 100, 30));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1000, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -406,9 +412,12 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnBuscar1ActionPerformed
 
+    private void txtbuscadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbuscadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboEstado;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnEliminar;
@@ -417,6 +426,7 @@ public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label10;
