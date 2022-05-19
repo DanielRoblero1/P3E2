@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="19ed5830-fd05-46eb-beca-97d673be5ec7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[Select * From tbl_proveedor;]]>
+	</queryString>
+	<field name="provid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provnombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provsaldo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provestado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provtelefono" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="provdireccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="28" y="0" width="28" height="20" uuid="a19bdaf2-4a29-4690-bf79-785f5c9c5ee6"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="0" width="100" height="20" uuid="d5040588-4a90-4555-a229-bdb447a084ae"/>
+				<text><![CDATA[Nombre Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="0" width="100" height="20" uuid="dbaaf1e0-e76e-499f-97bd-33fef2d1c4d8"/>
+				<text><![CDATA[Estado del proveedor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="78" y="0" width="100" height="20" uuid="cc8703de-ea8e-4bde-a43c-44e66197ee92"/>
+				<textFieldExpression><![CDATA[$F{provnombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="0" width="100" height="20" uuid="c81bdf81-da0a-4d11-8651-982f14ebade1"/>
+				<textFieldExpression><![CDATA[$F{provestado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="0" width="50" height="20" uuid="f1dfb8ef-1d98-47fb-b94d-f9fe9847e8e4"/>
+				<textFieldExpression><![CDATA[$F{provid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
