@@ -47,8 +47,8 @@ public class mdiComprasG2 extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jM_MantenimientopApps = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
 
@@ -112,18 +112,28 @@ public class mdiComprasG2 extends javax.swing.JFrame {
         });
 
         jMenuItem4.setText("Ordenes de compras");
-        jM_MantenimientopApps.add(jMenuItem4);
-
-        jMenuItem7.setText("Compras");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jMenuItem4ActionPerformed(evt);
             }
         });
-        jM_MantenimientopApps.add(jMenuItem7);
+        jM_MantenimientopApps.add(jMenuItem4);
 
         jMenuItem8.setText("Cuentas por pagar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jM_MantenimientopApps.add(jMenuItem8);
+
+        jMenuItem9.setText("Compras");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jM_MantenimientopApps.add(jMenuItem9);
 
         jMenuBar1.add(jM_MantenimientopApps);
 
@@ -178,13 +188,28 @@ public class mdiComprasG2 extends javax.swing.JFrame {
 
     private void jM_MantenimientopAppsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_MantenimientopAppsActionPerformed
         // TODO add your handling code here:
-
+         frmProcesoCompras ventana = new frmProcesoCompras();
+        jDesktopPane1.add(ventana);
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = ventana.getSize();
+        ventana.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        
+        
+        
 
     }//GEN-LAST:event_jM_MantenimientopAppsActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,7 +277,7 @@ public class mdiComprasG2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
