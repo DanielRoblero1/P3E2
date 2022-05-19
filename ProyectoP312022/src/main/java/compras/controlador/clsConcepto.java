@@ -30,7 +30,6 @@ private Boolean conestatus;
     }
 
     public void setConnombre(String connombre) {
-        this.connombre = connombre;
     }
 
     public String getConefecto() {
