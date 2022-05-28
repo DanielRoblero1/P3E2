@@ -219,7 +219,7 @@ public class frmProcesoCompras extends javax.swing.JInternalFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 40, 30));
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 50, 30));
 
         tablaVendedores.setBackground(new java.awt.Color(204, 255, 255));
         tablaVendedores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0)));
@@ -244,7 +244,6 @@ public class frmProcesoCompras extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 880, 430));
 
-        txtCantidad.setBackground(new java.awt.Color(255, 255, 255));
         txtCantidad.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         txtCantidad.setForeground(new java.awt.Color(0, 51, 255));
         txtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -294,7 +293,6 @@ public class frmProcesoCompras extends javax.swing.JInternalFrame {
         label8.setText("ID producto");
         getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
 
-        txtCosto.setBackground(new java.awt.Color(255, 255, 255));
         txtCosto.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         txtCosto.setForeground(new java.awt.Color(0, 51, 255));
         txtCosto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -324,7 +322,6 @@ public class frmProcesoCompras extends javax.swing.JInternalFrame {
         });
         getContentPane().add(cbx_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 130, -1));
 
-        txtSerie.setBackground(new java.awt.Color(255, 255, 255));
         txtSerie.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         txtSerie.setForeground(new java.awt.Color(0, 51, 255));
         txtSerie.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -344,7 +341,6 @@ public class frmProcesoCompras extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(txtEmi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 220, -1));
 
-        txtOrd.setBackground(new java.awt.Color(255, 255, 255));
         txtOrd.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         txtOrd.setForeground(new java.awt.Color(0, 51, 255));
         txtOrd.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -400,7 +396,6 @@ public class frmProcesoCompras extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
         getContentPane().add(txtVenci1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 220, -1));
 
-        txtOrd1.setBackground(new java.awt.Color(255, 255, 255));
         txtOrd1.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         txtOrd1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtOrd1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(204, 204, 204)));

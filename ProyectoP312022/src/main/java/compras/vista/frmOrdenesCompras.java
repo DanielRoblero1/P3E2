@@ -265,6 +265,11 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
         label8.setText("COSTO");
         getContentPane().add(label8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
 
+        cbx_Proveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_ProveedorActionPerformed(evt);
+            }
+        });
         getContentPane().add(cbx_Proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 130, -1));
 
         getContentPane().add(cbx_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 130, -1));
@@ -400,6 +405,10 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(rootPane, "INGRESE EL CODIGO DEL ORDEN DE COMPRA QUE DESEA BUSCAR,ELIMINAR O REGISTRAR");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbx_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_ProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbx_ProveedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
