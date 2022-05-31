@@ -18,11 +18,11 @@ import java.util.List;
  */
 public class daoCuentasPorPagar {
 
-    private static final String SQL_SELECT = "SELECT cuentapagarid, conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar";
-    private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, comid, provid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia) VALUES (?,?,?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_cuentasporpagar SET cuentadoc = ?, cuentasaldo = ?, cuentavalor = ?, cuentareferencia =?, comid =?, provid =? WHERE tbl_cuentasporpagar.cuentapagarid = ?";
+    private static final String SQL_SELECT = "SELECT cuentapagarid, conid, cuentasaldo, cuentavalor, cuentareferencia, comid, provid, cuentafechaemi, cuentafechavenci FROM tbl_cuentasporpagar";
+    private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, cuentasaldo, cuentavalor, cuentareferencia, comid, provid, cuentafechaemi, cuentafechavenci) VALUES ( ?,?,?,?,?,?,?,?);";
+    private static final String SQL_UPDATE = "UPDATE tbl_cuentasporpagar SET conid = ?, cuentasaldo = ?, cuentavalor = ?, cuentareferencia = ?, comid = ?, provid = ?, cuentafechaemi = ?, cuentafechavenci = ?  WHERE tbl_cuentasporpagar.cuentapagarid = ?";
     private static final String SQL_DELETE = "DELETE FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.cuentapagarid = ?";
-    private static final String SQL_QUERY = "SELECT cuentapagarid, conid, cuentadoc, cuentasaldo, cuentavalor, cuentareferencia, comid, provid FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.cuentapagarid=?";
+    private static final String SQL_QUERY = "SELECT cuentapagarid, conid, cuentasaldo, cuentavalor, cuentareferencia, comid, provid, cuentafechaemi, cuentafechavenci FROM tbl_cuentasporpagar  WHERE tbl_cuentasporpagar.cuentapagarid = ?";
 
     public List<clsCuentasPorPagar> select() {
         Connection conn = null;
@@ -37,22 +37,25 @@ public class daoCuentasPorPagar {
             while (rs.next()) {
                 int cuentapagarid = rs.getInt("cuentapagarid");
                 int conid = rs.getInt("conid");
-                int cuentadoc = rs.getInt("cuentadoc");
                 int cuentasaldo = rs.getInt("cuentasaldo");
                 int cuentavalor = rs.getInt("cuentavalor");
                 int cuentareferencia = rs.getInt("cuentareferencia");
                 int comid = rs.getInt("comid");
                 int Provid = rs.getInt("provid");
-
+                String cuentafechaemi = rs.getString("cuentafechaemi");
+                String cuentafechavenci = rs.getString("cuentafechavenci");
+                System.out.println(cuentafechavenci);
+                
                 cuentas = new clsCuentasPorPagar();
                 cuentas.setCuentapagarid(cuentapagarid);
                 cuentas.setConid(conid);
-                cuentas.setCuentadoc(cuentadoc);
                 cuentas.setCuentasaldo(cuentasaldo);
                 cuentas.setCuentavalor(cuentavalor);
                 cuentas.setCuentareferencia(cuentareferencia);
                 cuentas.setComid(comid);
                 cuentas.setProvid(Provid);
+                cuentas.setCuentafechaemi(cuentafechaemi);
+                cuentas.setCuentafechavenci(cuentafechavenci);
                 
                 cuent.add(cuentas);
             }
@@ -76,12 +79,13 @@ public class daoCuentasPorPagar {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
             stmt.setInt(1, cuentas.getConid());
-            stmt.setInt(2, cuentas.getCuentadoc());
-            stmt.setInt(3, cuentas.getCuentasaldo());
-            stmt.setInt(4, cuentas.getCuentavalor());
-            stmt.setInt(5, cuentas.getCuentareferencia());
-            stmt.setInt(6, cuentas.getComid());
-            stmt.setInt(7, cuentas.getProvid());
+            stmt.setInt(2, cuentas.getCuentasaldo());
+            stmt.setInt(3, cuentas.getCuentavalor());
+            stmt.setInt(4, cuentas.getCuentareferencia());
+            stmt.setInt(5, cuentas.getComid());
+            stmt.setInt(6, cuentas.getProvid());
+            stmt.setString(7, cuentas.getCuentafechaemi());
+            stmt.setString(8, cuentas.getCuentafechavenci());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();
@@ -105,12 +109,15 @@ public class daoCuentasPorPagar {
             conn = clsConexion.getConnection();
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setInt(1, cuentas.getCuentadoc());
+            stmt.setInt(1, cuentas.getConid());
             stmt.setInt(2, cuentas.getCuentasaldo());
             stmt.setInt(3, cuentas.getCuentavalor());
             stmt.setInt(4, cuentas.getCuentareferencia());
-            stmt.setInt(5, cuentas.getComid());
+            stmt.setInt(5, cuentas.getComid());  
             stmt.setInt(6, cuentas.getProvid());
+            stmt.setString(7, cuentas.getCuentafechaemi());
+            stmt.setString(8, cuentas.getCuentafechavenci());
+            stmt.setInt(9, cuentas.getCuentapagarid());
             rows = stmt.executeUpdate();
             System.out.println("Registros actualizado:" + rows);
 
@@ -160,22 +167,24 @@ public class daoCuentasPorPagar {
             while (rs.next()) {
                 int cuentapagarid = rs.getInt("cuentapagarid");
                 int conid = rs.getInt("conid");
-                int cuentadoc = rs.getInt("cuentadoc");
                 int cuentasaldo = rs.getInt("cuentasaldo");
                 int cuentavalor = rs.getInt("cuentavalor");
                 int cuentareferencia = rs.getInt("cuentareferencia");
                 int comid = rs.getInt ("comid");
                 int provid = rs.getInt("provid");
+                String cuentafechaemi = rs.getString("cuentafechaemi");
+                String cuentafechavenci = rs.getString("cuentafechavenci");
 
                 cuentas = new clsCuentasPorPagar();
                 cuentas.setCuentapagarid(cuentapagarid);
                 cuentas.setConid(conid);
-                cuentas.setCuentadoc(cuentadoc);
                 cuentas.setCuentasaldo(cuentasaldo);
-                cuentas.setCuentavalor(cuentasaldo);
-                cuentas.setCuentareferencia(cuentavalor);
+                cuentas.setCuentavalor(cuentavalor);
+                cuentas.setCuentareferencia(cuentareferencia);
                 cuentas.setComid(comid);
                 cuentas.setProvid(provid);
+                cuentas.setCuentafechaemi(cuentafechaemi);
+                cuentas.setCuentafechavenci(cuentafechavenci);
             }
             //System.out.println("Registros buscado:" + persona);
         } catch (SQLException ex) {

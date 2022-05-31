@@ -19,7 +19,7 @@ import java.util.List;
 public class daoCompras {
 
     private static final String SQL_SELECT = "SELECT comid ,provid, comserie, ordid FROM tbl_compraencabezado";
-    private static final String SQL_SELECT2 = "SELECT prodid, ordcantidad, ordcosto,comfechaemi,comfechavenci FROM tbl_compradetalle";
+    private static final String SQL_SELECT2 = "SELECT prodid, ordcantidad, ordcosto, comfechaemi, comfechavenci FROM tbl_compradetalle";
     private static final String SQL_INSERT = "INSERT INTO tbl_compraencabezado ( provid, comserie, ordid) VALUES ( ?, ?, ?)";
     private static final String SQL_INSERT2 = "INSERT INTO tbl_compradetalle (prodid, ordcantidad, ordcosto, comfechaemi, comfechavenci) VALUES (?, ?, ?,?, ?)";
     private static final String SQL_UPDATE = "UPDATE tbl_compraencabezado SET provid = ?, comserie = ?, ordid = ? WHERE tbl_compraencabezado.comid = ?";
@@ -27,7 +27,7 @@ public class daoCompras {
     private static final String SQL_DELETE = "DELETE FROM tbl_compraencabezado WHERE tbl_compraencabezado.comid = ?";
     private static final String SQL_DELETE2 = "DELETE FROM tbl_compradetalle WHERE tbl_compradetalle.comdetid = ?";
     private static final String SQL_QUERY = "SELECT comid ,provid, comserie, ordid FROM tbl_compraencabezado WHERE tbl_compraencabezado.comid = ?";
-    private static final String SQL_QUERY2 = "SELECT prodid, ordcantidad, ordcosto,comfechaemi,comfechavenci FROM tbl_compradetalle WHERE tbl_compradetalle.comdetid = ?";
+    private static final String SQL_QUERY2 = "SELECT prodid, ordcantidad, ordcosto, comfechaemi, comfechavenci FROM tbl_compradetalle WHERE tbl_compradetalle.comdetid = ?";
     public List<clsCompras> select() {
         Connection conn = null;
         PreparedStatement stmt = null;

@@ -27,9 +27,6 @@ public class clsOrdenesCompras {
         this.prodid = prodid;
     }
 
-
-
-
     public int getordid() {
         return ordid;
     }

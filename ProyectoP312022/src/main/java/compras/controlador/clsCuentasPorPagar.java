@@ -6,23 +6,25 @@ public class clsCuentasPorPagar {
  private int conid; 
  private int comid;
  private int provid;
- private int cuentadoc;
  private int cuentasaldo;
  private int cuentavalor;
  private int cuentareferencia;
-
-    public clsCuentasPorPagar() {
+ private String cuentafechaemi;
+ private String cuentafechavenci;
+ 
+public clsCuentasPorPagar() {
     }
 
-    public clsCuentasPorPagar(int cuentapagarid, int conid, int cuentadoc, int cuentasaldo, int cuentavalor, int cuentareferencia) {
+    public clsCuentasPorPagar(int cuentapagarid, int conid, int comid, int provid, int cuentadoc, int cuentasaldo, int cuentavalor, int cuentareferencia, String cuentafechaemi, String cuentafechavenci) {
         this.cuentapagarid = cuentapagarid;
         this.conid = conid;
         this.comid = comid;
         this.provid = provid;
-        this.cuentadoc = cuentadoc;
         this.cuentasaldo = cuentasaldo;
         this.cuentavalor = cuentavalor;
         this.cuentareferencia = cuentareferencia;
+        this.cuentafechaemi = cuentafechaemi;
+        this.cuentafechavenci = cuentafechavenci;   
     }
 
     public int getCuentapagarid() {
@@ -53,16 +55,8 @@ public class clsCuentasPorPagar {
         return provid;
     }
 
-    public void setProvid(int Provid) {
+    public void setProvid(int provid) {
         this.provid = provid;
-    }
-    
-    public int getCuentadoc() {
-        return cuentadoc;
-    }
-
-    public void setCuentadoc(int cuentadoc) {
-        this.cuentadoc = cuentadoc;
     }
 
     public int getCuentasaldo() {
@@ -88,9 +82,26 @@ public class clsCuentasPorPagar {
     public void setCuentareferencia(int cuentareferencia) {
         this.cuentareferencia = cuentareferencia;
     }
+
+    public String getCuentafechaemi () {
+        return cuentafechaemi;
+    }
+    
+    public void setCuentafechaemi(String cuentafechaemi) {
+        this.cuentafechaemi = cuentafechaemi;
+    }
+    
+    public String getCuentafechavenci () {
+        return cuentafechavenci;
+    }
+    
+    public void setCuentafechavenci(String cuentafechavenci) {
+        this.cuentafechavenci = cuentafechavenci;
+    }
+    
     
     @Override
     public String toString() {
-        return "clsCuentasPorPagar{" + "cuentapagarid=" + cuentapagarid + "conid=" + conid + ", comid=" + comid + ", provid=" + provid + ", cuentadoc=" + cuentadoc + ", cuentasaldo=" + cuentasaldo + ", cuentavalor=" + cuentavalor + ", cuentareferencia=" + cuentareferencia + '}';
+        return "clsCuentasPorPagar{" + "cuentapagarid=" + cuentapagarid + ", conid=" + conid + ", comid=" + comid + ", provid=" + provid + ", cuentasaldo=" + cuentasaldo + ", cuentavalor=" + cuentavalor + ", cuentareferencia=" + cuentareferencia + ", cuentafechaemi=" + cuentafechaemi + ", cuentafechavenci=" + cuentafechavenci + '}';
     }
 }

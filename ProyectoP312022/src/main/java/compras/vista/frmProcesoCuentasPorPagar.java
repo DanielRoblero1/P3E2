@@ -17,6 +17,7 @@ import compras.modelo.daoCuentasPorPagar;
 import compras.controlador.clsCuentasPorPagar;
 
 import java.util.List;
+import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 import java.io.File;
 import javax.swing.JOptionPane;
@@ -53,26 +54,30 @@ public void llenadoDeCombos() {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-         modelo.addColumn("ID CuentaPagar");
+        modelo.addColumn("ID CuentaPagar");
         modelo.addColumn("ID Concepto");
         modelo.addColumn("ID Compras");
         modelo.addColumn("ID Proveedor");
-        modelo.addColumn("Cuenta de documento");
         modelo.addColumn("Saldo de cuenta");
         modelo.addColumn("Valor de cuenta");
         modelo.addColumn("Referencia de cuenta");
+        modelo.addColumn("Emision");
+        modelo.addColumn("Vencimiento");
+        
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         List<clsCuentasPorPagar> cuentaporpagar = cuentasDAO.select();
         tablaVendedores.setModel(modelo);
-        String[] dato = new String[7];
+        String[] dato = new String[9];
         for (int i = 0; i < cuentaporpagar.size(); i++) {
             dato[0] = Integer.toString(cuentaporpagar.get(i).getCuentapagarid());
-            dato[1] = Integer.toString(cuentaporpagar.get(i).getComid());
-            dato[2] = Integer.toString(cuentaporpagar.get(i).getProvid());
-            dato[3] = Integer.toString(cuentaporpagar.get(i).getCuentadoc());
+            dato[1] = Integer.toString(cuentaporpagar.get(i).getConid());
+            dato[2] = Integer.toString(cuentaporpagar.get(i).getComid());
+            dato[3] = Integer.toString(cuentaporpagar.get(i).getProvid());
             dato[4] = Integer.toString(cuentaporpagar.get(i).getCuentasaldo());
             dato[5] = Integer.toString(cuentaporpagar.get(i).getCuentavalor());
             dato[6] = Integer.toString(cuentaporpagar.get(i).getCuentareferencia());
+            dato[7] = cuentaporpagar.get(i).getCuentafechaemi();
+            dato[8] = cuentaporpagar.get(i).getCuentafechavenci();
             //System.out.println("vendedor:" + vendedores);
             modelo.addRow(dato);
         }
@@ -83,13 +88,16 @@ public void llenadoDeCombos() {
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         cuentasporpagarAConsultar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
         cuentasporpagarAConsultar = cuentasDAO.query(cuentasporpagarAConsultar);
+        
         lblConcepto.setText(String.valueOf(cuentasporpagarAConsultar.getConid()));
         lblCompras.setText(String.valueOf(cuentasporpagarAConsultar.getComid()));
         lblProveedor.setText(String.valueOf(cuentasporpagarAConsultar.getProvid()));
         txtCuentSal.setText(String.valueOf(cuentasporpagarAConsultar.getCuentasaldo()));
         txtCuentVal.setText(String.valueOf(cuentasporpagarAConsultar.getCuentavalor()));
         txtCuentRef.setText(String.valueOf(cuentasporpagarAConsultar.getCuentareferencia()));
-       
+        lblEmi.setText(cuentasporpagarAConsultar.getCuentafechaemi());
+        lblVenci.setText(cuentasporpagarAConsultar.getCuentafechavenci());
+        
     }
 
     public frmProcesoCuentasPorPagar() {
@@ -140,12 +148,12 @@ public void llenadoDeCombos() {
         jPanel3 = new javax.swing.JPanel();
         label1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jcEmi = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jcVenci = new com.toedter.calendar.JDateChooser();
         jButton2 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblVenci = new javax.swing.JLabel();
+        lblEmi = new javax.swing.JLabel();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -247,7 +255,7 @@ public void llenadoDeCombos() {
                 txtCuentSalActionPerformed(evt);
             }
         });
-        jPanel2.add(txtCuentSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 130, 20));
+        jPanel2.add(txtCuentSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 130, 20));
 
         label10.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label10.setText("Valor de la cuenta");
@@ -260,7 +268,7 @@ public void llenadoDeCombos() {
                 txtCuentValActionPerformed(evt);
             }
         });
-        jPanel2.add(txtCuentVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 150, 20));
+        jPanel2.add(txtCuentVal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 140, 20));
 
         label5.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         label5.setText("Referencia de la cuenta");
@@ -273,7 +281,7 @@ public void llenadoDeCombos() {
                 txtCuentRefActionPerformed(evt);
             }
         });
-        jPanel2.add(txtCuentRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 150, 20));
+        jPanel2.add(txtCuentRef, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 150, 20));
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, -40, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -324,14 +332,17 @@ public void llenadoDeCombos() {
         });
         jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 80, 40));
 
-        lblConcepto.setText("jLabel4");
-        jPanel2.add(lblConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 90, -1));
+        lblConcepto.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        lblConcepto.setForeground(new java.awt.Color(0, 0, 255));
+        jPanel2.add(lblConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 90, 20));
 
-        lblCompras.setText("jLabel5");
-        jPanel2.add(lblCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 70, 60, -1));
+        lblCompras.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        lblCompras.setForeground(new java.awt.Color(0, 0, 255));
+        jPanel2.add(lblCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 70, 60, 20));
 
-        lblProveedor.setText("jLabel6");
-        jPanel2.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(878, 70, 60, -1));
+        lblProveedor.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        lblProveedor.setForeground(new java.awt.Color(0, 0, 255));
+        jPanel2.add(lblProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(878, 70, 70, 20));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 270));
 
@@ -346,12 +357,12 @@ public void llenadoDeCombos() {
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jLabel2.setText("Emision");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-        jPanel3.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 150, -1));
+        jPanel3.add(jcEmi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 150, -1));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jLabel3.setText("Vencimiento");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
-        jPanel3.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 150, -1));
+        jPanel3.add(jcVenci, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 150, -1));
 
         jButton2.setText("Ayuda");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -361,16 +372,45 @@ public void llenadoDeCombos() {
         });
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 10, 100, 40));
 
-        jLabel7.setText("jLabel7");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 60, -1));
+        lblVenci.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        lblVenci.setForeground(new java.awt.Color(0, 0, 255));
+        jPanel3.add(lblVenci, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 90, 30));
 
-        jLabel8.setText("jLabel8");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 30, 60, -1));
+        lblEmi.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        lblEmi.setForeground(new java.awt.Color(0, 0, 255));
+        jPanel3.add(lblEmi, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 30, 90, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "INGRESE EL CODIGO DEL PROVEEDOR QUE DESEA BUSCAR,ELIMINAR O REGISTRAR");
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            if ((new File("src\\main\\java\\ayudas\\ProcesoMayor.chm")).exists()) {
+                Process p = Runtime
+                        .getRuntime()
+                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\ayudas\\ProcesoMayor.chm");
+                p.waitFor();
+            } else {
+                System.out.println("La ayuda no Fue encontrada");
+            }
+            System.out.println("Correcto");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        // TODO add your handling code here:
+        buscarCuenta();
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
@@ -390,17 +430,29 @@ public void llenadoDeCombos() {
         cuentasporpagarAInsertar.setCuentasaldo(Integer.parseInt(txtCuentSal.getText()));
         cuentasporpagarAInsertar.setCuentavalor(Integer.parseInt(txtCuentVal.getText()));
         cuentasporpagarAInsertar.setCuentareferencia(Integer.parseInt(txtCuentRef.getText()));
+        
+        String dia = Integer.toString(jcEmi.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jcEmi.getCalendar().get(Calendar.MONTH) + 1);
+        String year = Integer.toString(jcEmi.getCalendar().get(Calendar.YEAR));
+        String fecha = (year + "-" + mes + "-" + dia);
+        cuentasporpagarAInsertar.setCuentafechaemi(fecha);
+        
+        String dia1 = Integer.toString(jcVenci.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes1 = Integer.toString(jcVenci.getCalendar().get(Calendar.MONTH) + 1);
+        String year1 = Integer.toString(jcVenci.getCalendar().get(Calendar.YEAR));
+        String fecha1 = (year1 + "-" + mes1 + "-" + dia1);
+        cuentasporpagarAInsertar.setCuentafechavenci(fecha1);
+        
         cuentasDAO.insert(cuentasporpagarAInsertar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void txtbuscadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscadoActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane, "INGRESE EL CODIGO DEL PROVEEDOR QUE DESEA BUSCAR,ELIMINAR O REGISTRAR");
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_txtbuscadoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-//        // TODO add your handling code here:
+        //        // TODO add your handling code here:
         daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
         clsCuentasPorPagar cuentasporpagarAActualizar = new clsCuentasPorPagar();
         cuentasporpagarAActualizar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
@@ -409,19 +461,34 @@ public void llenadoDeCombos() {
         cuentasporpagarAActualizar.setComid(Integer.parseInt(String.valueOf(CbxCompras.getSelectedItem())));
         cuentasporpagarAActualizar.setCuentasaldo(Integer.parseInt(txtCuentSal.getText()));
         cuentasporpagarAActualizar.setCuentavalor(Integer.parseInt(txtCuentVal.getText()));
-        cuentasporpagarAActualizar.setCuentareferencia(Integer.parseInt(txtCuentRef.getText())); 
+        cuentasporpagarAActualizar.setCuentareferencia(Integer.parseInt(txtCuentRef.getText()));
+        
+        String dia = Integer.toString(jcEmi.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes = Integer.toString(jcEmi.getCalendar().get(Calendar.MONTH) + 1);
+        String year = Integer.toString(jcEmi.getCalendar().get(Calendar.YEAR));
+        String fecha = (year + "-" + mes + "-" + dia);
+        cuentasporpagarAActualizar.setCuentafechaemi(fecha);
+        
+        String dia1 = Integer.toString(jcVenci.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes1 = Integer.toString(jcVenci.getCalendar().get(Calendar.MONTH) + 1);
+        String year1 = Integer.toString(jcVenci.getCalendar().get(Calendar.YEAR));
+        String fecha1 = (year1 + "-" + mes1 + "-" + dia1);
+        cuentasporpagarAActualizar.setCuentafechavenci(fecha1);
+        
         cuentasDAO.update(cuentasporpagarAActualizar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       
+
         lblConcepto.setText("");
         lblCompras.setText("");
         lblProveedor.setText("");
         txtCuentSal.setText("");
         txtCuentVal.setText("");
         txtCuentRef.setText("");
+        lblEmi.setText("");
+        lblVenci.setText("");
         btnRegistrar.setEnabled(true);
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
@@ -429,51 +496,25 @@ public void llenadoDeCombos() {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        try {
-            if ((new File("src\\main\\java\\ayudas\\ProcesoMayor.chm")).exists()) {
-                Process p = Runtime
-                        .getRuntime()
-                        .exec("rundll32 url.dll,FileProtocolHandler src\\main\\java\\ayudas\\ProcesoMayor.chm");
-                p.waitFor();
-            } else {
-                System.out.println("La ayuda no Fue encontrada");
-            }
-            System.out.println("Correcto");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void txtCuentRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentRefActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCuentRefActionPerformed
-
-    private void txtCuentSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentSalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCuentSalActionPerformed
 
     private void txtCuentValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentValActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCuentValActionPerformed
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+    private void txtCuentSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentSalActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
-
-    private void txtbuscadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbuscadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtbuscadoActionPerformed
-
-    private void CbxComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxComprasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CbxComprasActionPerformed
+    }//GEN-LAST:event_txtCuentSalActionPerformed
 
     private void CbxProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxProveedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CbxProveedorActionPerformed
+
+    private void CbxComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxComprasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbxComprasActionPerformed
 
     private void CbxConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxConceptoActionPerformed
         // TODO add your handling code here:
@@ -491,17 +532,15 @@ public void llenadoDeCombos() {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser jcEmi;
+    private com.toedter.calendar.JDateChooser jcVenci;
     private javax.swing.JLabel label1;
     private javax.swing.JLabel label10;
     private javax.swing.JLabel label3;
@@ -513,7 +552,9 @@ public void llenadoDeCombos() {
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lblCompras;
     private javax.swing.JLabel lblConcepto;
+    private javax.swing.JLabel lblEmi;
     private javax.swing.JLabel lblProveedor;
+    private javax.swing.JLabel lblVenci;
     private javax.swing.JLabel lbusu;
     private javax.swing.JTable tablaVendedores;
     private javax.swing.JTextField txtCuentRef;
