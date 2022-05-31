@@ -5,8 +5,8 @@
  */
 package compras.modelo;
 
-import compras.vista.frmMantenimientoProveedor;
-import compras.controlador.clsProveedor;
+import compras.vista.frmMantenimientoProveedorDanielRoblero;
+import compras.controlador.clsProveedorDanielRoblero;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import seguridad.modelo.clsConexion;
  *
  * @author visitante
  */
-public class daoProveedor {
+public class daoProveedorDanielRoblero {
 
     private static final String SQL_SELECT2 = "SELECT provid, provnombre, provsaldo, provestado, provtelefono, provdireccion FROM tbl_proveedor";
     private static final String SQL_INSERT = "INSERT INTO tbl_proveedor(provnombre,provsaldo,provestado,provtelefono,provdireccion) VALUES(?,?,?,?,?)";
@@ -24,12 +24,12 @@ public class daoProveedor {
     private static final String SQL_DELETE = "DELETE FROM tbl_proveedor WHERE tbl_proveedor.provid = ?";
     private static final String SQL_QUERY = "SELECT provid, provnombre, provsaldo, provestado, provtelefono, provdireccion FROM tbl_proveedor WHERE provid = ?";
 
-    public List<clsProveedor> select() {
+    public List<clsProveedorDanielRoblero> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsProveedor usuario = null;
-        List<clsProveedor> usuarios = new ArrayList<clsProveedor>();
+        clsProveedorDanielRoblero usuario = null;
+        List<clsProveedorDanielRoblero> usuarios = new ArrayList<clsProveedorDanielRoblero>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT2);
@@ -43,7 +43,7 @@ public class daoProveedor {
                 String provdireccion = rs.getString("provdireccion");
 
 
-                usuario = new clsProveedor();
+                usuario = new clsProveedorDanielRoblero();
                 usuario.setprovid(provid);
                 usuario.setprovnombre(provnombre);
                 usuario.setprovsaldo(provsaldo);
@@ -65,7 +65,7 @@ public class daoProveedor {
         return usuarios;
     }
 
-    public int insert(clsProveedor proveedor) {
+    public int insert(clsProveedorDanielRoblero proveedor) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -91,7 +91,7 @@ public class daoProveedor {
         return rows;
     }
 
-    public int update(clsProveedor proveedor) {
+    public int update(clsProveedorDanielRoblero proveedor) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -121,7 +121,7 @@ public class daoProveedor {
         return rows;
     }
 
-    public int delete(clsProveedor perfil) {
+    public int delete(clsProveedorDanielRoblero perfil) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -143,7 +143,7 @@ public class daoProveedor {
         return rows;
     }
 
-    public clsProveedor query(clsProveedor proveedor) {
+    public clsProveedorDanielRoblero query(clsProveedorDanielRoblero proveedor) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -161,7 +161,7 @@ public class daoProveedor {
                 int provtelefono = rs.getInt("provtelefono");
                 String provdireccion = rs.getString("provdireccion");
 
-                proveedor = new clsProveedor();
+                proveedor = new clsProveedorDanielRoblero();
                 proveedor.setprovid(provid);
                 proveedor.setprovnombre(provnombre);
                 proveedor.setprovsaldo(provsaldo);

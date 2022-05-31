@@ -7,7 +7,7 @@ package compras.modelo;
 
 import compras.modelo.*;
 import seguridad.modelo.*;
-import compras.controlador.clsCuentasPorPagar;
+import compras.controlador.clsCuentasPorPagar_MarcoGatica;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoCuentasPorPagar {
+public class daoCuentasPorPagar_MarcoGatica {
 
     private static final String SQL_SELECT = "SELECT cuentapagarid, conid, cuentasaldo, cuentavalor, cuentareferencia, comid, provid, cuentafechaemi, cuentafechavenci FROM tbl_cuentasporpagar";
     private static final String SQL_INSERT = "INSERT INTO tbl_cuentasporpagar ( conid, cuentasaldo, cuentavalor, cuentareferencia, comid, provid, cuentafechaemi, cuentafechavenci) VALUES ( ?,?,?,?,?,?,?,?);";
@@ -24,12 +24,12 @@ public class daoCuentasPorPagar {
     private static final String SQL_DELETE = "DELETE FROM tbl_cuentasporpagar WHERE tbl_cuentasporpagar.cuentapagarid = ?";
     private static final String SQL_QUERY = "SELECT cuentapagarid, conid, cuentasaldo, cuentavalor, cuentareferencia, comid, provid, cuentafechaemi, cuentafechavenci FROM tbl_cuentasporpagar  WHERE tbl_cuentasporpagar.cuentapagarid = ?";
 
-    public List<clsCuentasPorPagar> select() {
+    public List<clsCuentasPorPagar_MarcoGatica> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsCuentasPorPagar cuentas = null;
-        List<clsCuentasPorPagar> cuent = new ArrayList<clsCuentasPorPagar>();
+        clsCuentasPorPagar_MarcoGatica cuentas = null;
+        List<clsCuentasPorPagar_MarcoGatica> cuent = new ArrayList<clsCuentasPorPagar_MarcoGatica>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -46,7 +46,7 @@ public class daoCuentasPorPagar {
                 String cuentafechavenci = rs.getString("cuentafechavenci");
                 System.out.println(cuentafechavenci);
                 
-                cuentas = new clsCuentasPorPagar();
+                cuentas = new clsCuentasPorPagar_MarcoGatica();
                 cuentas.setCuentapagarid(cuentapagarid);
                 cuentas.setConid(conid);
                 cuentas.setCuentasaldo(cuentasaldo);
@@ -71,7 +71,7 @@ public class daoCuentasPorPagar {
         return cuent;
     }
 
-    public int insert(clsCuentasPorPagar cuentas) {
+    public int insert(clsCuentasPorPagar_MarcoGatica cuentas) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -101,7 +101,7 @@ public class daoCuentasPorPagar {
     }
 
 
-    public int update(clsCuentasPorPagar cuentas) {
+    public int update(clsCuentasPorPagar_MarcoGatica cuentas) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -131,7 +131,7 @@ public class daoCuentasPorPagar {
         return rows;
     }
 
-    public int delete(clsCuentasPorPagar cuentas) {
+    public int delete(clsCuentasPorPagar_MarcoGatica cuentas) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -153,7 +153,7 @@ public class daoCuentasPorPagar {
         return rows;
     }
 
-    public clsCuentasPorPagar query(clsCuentasPorPagar cuentas) {
+    public clsCuentasPorPagar_MarcoGatica query(clsCuentasPorPagar_MarcoGatica cuentas) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -175,7 +175,7 @@ public class daoCuentasPorPagar {
                 String cuentafechaemi = rs.getString("cuentafechaemi");
                 String cuentafechavenci = rs.getString("cuentafechavenci");
 
-                cuentas = new clsCuentasPorPagar();
+                cuentas = new clsCuentasPorPagar_MarcoGatica();
                 cuentas.setCuentapagarid(cuentapagarid);
                 cuentas.setConid(conid);
                 cuentas.setCuentasaldo(cuentasaldo);

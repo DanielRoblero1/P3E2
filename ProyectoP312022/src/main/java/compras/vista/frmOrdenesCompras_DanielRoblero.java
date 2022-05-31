@@ -5,14 +5,14 @@
  */
 package compras.vista;
 
-import compras.controlador.clsOrdenesCompras;
+import compras.controlador.clsOrdenesCompras_DanielRoblero;
 import seguridad.vista.*;
 import compras.vista.*;
-import compras.modelo.daoProducto;
-import compras.controlador.clsProducto;
-import compras.controlador.clsProveedor;
-import compras.modelo.daoOrdenesCompras;
-import compras.modelo.daoProveedor;
+import compras.modelo.daoProducto_JosueMoran_MarcoGatica;
+import compras.controlador.clsProducto_JosueMoran_MarcoGatica;
+import compras.controlador.clsProveedorDanielRoblero;
+import compras.modelo.daoOrdenesCompras_DanielRoblero;
+import compras.modelo.daoProveedorDanielRoblero;
 import java.util.Calendar;
 
 import java.util.List;
@@ -24,19 +24,19 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmOrdenesCompras extends javax.swing.JInternalFrame {
+public class frmOrdenesCompras_DanielRoblero extends javax.swing.JInternalFrame {
 
       public void llenadoDeCombos() {
-        daoProveedor provDAO = new daoProveedor();
-        List<clsProveedor> proveedor = provDAO.select();
+        daoProveedorDanielRoblero provDAO = new daoProveedorDanielRoblero();
+        List<clsProveedorDanielRoblero> proveedor = provDAO.select();
 
         cbx_Proveedor.addItem("Seleccione Un Codigo");
         for (int i = 0; i < proveedor.size(); i++) {
             cbx_Proveedor.addItem(String.valueOf(proveedor.get(i).getprovid()));
         }
 
-        daoProducto productoDao = new daoProducto();
-        List<clsProducto> producto = productoDao.select();
+        daoProducto_JosueMoran_MarcoGatica productoDao = new daoProducto_JosueMoran_MarcoGatica();
+        List<clsProducto_JosueMoran_MarcoGatica> producto = productoDao.select();
         cbx_Producto.addItem("Seleccione Un codigo");
         for (int i = 0; i < producto.size(); i++) {
             cbx_Producto.addItem(String.valueOf(producto.get(i).getProdid()));
@@ -52,9 +52,9 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
         modelo.addColumn("ID producto");
         modelo.addColumn("CANTIDAD");
         modelo.addColumn("COSTO");
-        daoOrdenesCompras productoDAO = new daoOrdenesCompras();
-        List<clsOrdenesCompras> producto = productoDAO.select();
-        List<clsOrdenesCompras> producto2 = productoDAO.select2();
+        daoOrdenesCompras_DanielRoblero productoDAO = new daoOrdenesCompras_DanielRoblero();
+        List<clsOrdenesCompras_DanielRoblero> producto = productoDAO.select();
+        List<clsOrdenesCompras_DanielRoblero> producto2 = productoDAO.select2();
 
         tablaVendedores.setModel(modelo);
         String[] dato = new String[6];
@@ -74,10 +74,10 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
     }
 
     public void buscarProducto() {
-        clsOrdenesCompras productoAConsultar = new clsOrdenesCompras();
-        daoOrdenesCompras productoDAO = new daoOrdenesCompras();
-        clsOrdenesCompras productoAConsultar2 = new clsOrdenesCompras();
-        daoOrdenesCompras productoDAO2 = new daoOrdenesCompras();
+        clsOrdenesCompras_DanielRoblero productoAConsultar = new clsOrdenesCompras_DanielRoblero();
+        daoOrdenesCompras_DanielRoblero productoDAO = new daoOrdenesCompras_DanielRoblero();
+        clsOrdenesCompras_DanielRoblero productoAConsultar2 = new clsOrdenesCompras_DanielRoblero();
+        daoOrdenesCompras_DanielRoblero productoDAO2 = new daoOrdenesCompras_DanielRoblero();
 
 
         productoAConsultar.setordid(Integer.parseInt(txtbuscado.getText()));
@@ -92,7 +92,7 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
         
     }
 
-    public frmOrdenesCompras() {
+    public frmOrdenesCompras_DanielRoblero() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -302,10 +302,10 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        daoOrdenesCompras productoDAO = new daoOrdenesCompras();
-        clsOrdenesCompras productoAEliminar = new clsOrdenesCompras();
-        daoOrdenesCompras productoDAO2 = new daoOrdenesCompras();
-        clsOrdenesCompras productoAEliminar2 = new clsOrdenesCompras();
+        daoOrdenesCompras_DanielRoblero productoDAO = new daoOrdenesCompras_DanielRoblero();
+        clsOrdenesCompras_DanielRoblero productoAEliminar = new clsOrdenesCompras_DanielRoblero();
+        daoOrdenesCompras_DanielRoblero productoDAO2 = new daoOrdenesCompras_DanielRoblero();
+        clsOrdenesCompras_DanielRoblero productoAEliminar2 = new clsOrdenesCompras_DanielRoblero();
 
         productoAEliminar.setordid(Integer.parseInt(txtbuscado.getText()));
         productoDAO.delete(productoAEliminar);
@@ -315,9 +315,9 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoOrdenesCompras productoDAO = new daoOrdenesCompras();
-        clsOrdenesCompras productoAInsertar = new clsOrdenesCompras();
-        clsOrdenesCompras productoAInsertar2 = new clsOrdenesCompras();
+        daoOrdenesCompras_DanielRoblero productoDAO = new daoOrdenesCompras_DanielRoblero();
+        clsOrdenesCompras_DanielRoblero productoAInsertar = new clsOrdenesCompras_DanielRoblero();
+        clsOrdenesCompras_DanielRoblero productoAInsertar2 = new clsOrdenesCompras_DanielRoblero();
 
         
         String dia = Integer.toString(txtFecha2.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -343,10 +343,10 @@ public class frmOrdenesCompras extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        daoOrdenesCompras productoDAO = new daoOrdenesCompras();
-        clsOrdenesCompras productoAActualizar = new clsOrdenesCompras();
-        daoOrdenesCompras productoDAO2 = new daoOrdenesCompras();
-        clsOrdenesCompras productoAActualizar2 = new clsOrdenesCompras();
+        daoOrdenesCompras_DanielRoblero productoDAO = new daoOrdenesCompras_DanielRoblero();
+        clsOrdenesCompras_DanielRoblero productoAActualizar = new clsOrdenesCompras_DanielRoblero();
+        daoOrdenesCompras_DanielRoblero productoDAO2 = new daoOrdenesCompras_DanielRoblero();
+        clsOrdenesCompras_DanielRoblero productoAActualizar2 = new clsOrdenesCompras_DanielRoblero();
 
         productoAActualizar.setordid(Integer.parseInt(txtbuscado.getText()));
         productoAActualizar2.setordid(Integer.parseInt(txtbuscado.getText()));

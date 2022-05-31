@@ -3,7 +3,7 @@ package compras.controlador;
 import compras.vista.*;
 import java.util.Date;
 
-public class clsOrdenesCompras {
+public class clsOrdenesCompras_DanielRoblero {
  private int ordid; 
  private int ordcdetalleid;  
  private String ordfecha;
@@ -14,10 +14,10 @@ public class clsOrdenesCompras {
  
  
 
-    public clsOrdenesCompras() {
+    public clsOrdenesCompras_DanielRoblero() {
     }
 
-    public clsOrdenesCompras(int ordid, int ordcdetalleid, String ordfecha, int ordcantidad, int ordcosto, int provid, int prodid) {
+    public clsOrdenesCompras_DanielRoblero(int ordid, int ordcdetalleid, String ordfecha, int ordcantidad, int ordcosto, int provid, int prodid) {
         this.ordid = ordid;
         this.ordcdetalleid = ordcdetalleid;
         this.ordfecha = ordfecha;

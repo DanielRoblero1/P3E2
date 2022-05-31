@@ -1,6 +1,6 @@
 package compras.controlador;
 //revert
-public class clsProveedor {
+public class clsProveedorDanielRoblero {
     private int provid;
     private String provnombre;
     private int provsaldo;
@@ -8,19 +8,19 @@ public class clsProveedor {
     private int provtelefono;
     private String provdireccion;
 
-    public clsProveedor() {
+    public clsProveedorDanielRoblero() {
     }
 
-    public clsProveedor(int provid) {
+    public clsProveedorDanielRoblero(int provid) {
         this.provid = provid;
     }
     
-    public clsProveedor(String provnombre, Boolean provestado) {
+    public clsProveedorDanielRoblero(String provnombre, Boolean provestado) {
         this.provnombre = provnombre;
         this.provestado = provestado;
     }
     
-    public clsProveedor(int provid, String provnombre, Boolean provestado) {
+    public clsProveedorDanielRoblero(int provid, String provnombre, Boolean provestado) {
         this.provid = provid;
         this.provnombre = provnombre;
         this.provestado = provestado;

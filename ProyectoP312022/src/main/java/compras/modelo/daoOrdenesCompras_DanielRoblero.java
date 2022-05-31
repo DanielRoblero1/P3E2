@@ -5,7 +5,7 @@
  */
 package compras.modelo;
 
-import compras.controlador.clsOrdenesCompras;
+import compras.controlador.clsOrdenesCompras_DanielRoblero;
 import compras.modelo.*;
 import seguridad.modelo.*;
 import java.sql.*;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoOrdenesCompras {
+public class daoOrdenesCompras_DanielRoblero {
 
     private static final String SQL_SELECT = "SELECT ordid ,ordfecha, provid FROM tbl_ordecompraencabezado";
     private static final String SQL_SELECT2 = "SELECT ordcdetalleid,ordcantidad, ordcosto, prodid FROM tbl_ordecompradetalle";
@@ -34,12 +34,12 @@ public class daoOrdenesCompras {
     private static final String SQL_QUERY = "SELECT ordid ,ordfecha, provid FROM tbl_ordecompraencabezado WHERE tbl_ordecompraencabezado.ordid = ?";
     private static final String SQL_QUERY2 = "SELECT ordcantidad, ordcosto,prodid FROM tbl_ordecompradetalle WHERE tbl_ordecompradetalle.ordcdetalleid = ?";
 
-    public List<clsOrdenesCompras> select() {
+    public List<clsOrdenesCompras_DanielRoblero> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsOrdenesCompras compras = null;
-        List<clsOrdenesCompras> compra= new ArrayList<clsOrdenesCompras>();
+        clsOrdenesCompras_DanielRoblero compras = null;
+        List<clsOrdenesCompras_DanielRoblero> compra= new ArrayList<clsOrdenesCompras_DanielRoblero>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -50,7 +50,7 @@ public class daoOrdenesCompras {
                 int provid = rs.getInt("provid");
                 
 
-                compras = new clsOrdenesCompras();
+                compras = new clsOrdenesCompras_DanielRoblero();
                 compras.setordid(ordid);
                 compras.setordfecha(ordfecha);
                 compras.setprovid(provid);
@@ -69,12 +69,12 @@ public class daoOrdenesCompras {
 
         return compra;
     }
-        public List<clsOrdenesCompras> select2() {
+        public List<clsOrdenesCompras_DanielRoblero> select2() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsOrdenesCompras compras = null;
-        List<clsOrdenesCompras> compra= new ArrayList<clsOrdenesCompras>();
+        clsOrdenesCompras_DanielRoblero compras = null;
+        List<clsOrdenesCompras_DanielRoblero> compra= new ArrayList<clsOrdenesCompras_DanielRoblero>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT2);
@@ -85,7 +85,7 @@ public class daoOrdenesCompras {
                 int prodid = rs.getInt("prodid");
 
                 
-                compras = new clsOrdenesCompras();
+                compras = new clsOrdenesCompras_DanielRoblero();
                 compras.setordcantidad(ordcantidad);
                 compras.setordcosto(ordcosto);
                 compras.setprodid(prodid);
@@ -105,7 +105,7 @@ public class daoOrdenesCompras {
         return compra;
     }
 
-    public int insert(clsOrdenesCompras producto) {
+    public int insert(clsOrdenesCompras_DanielRoblero producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -127,7 +127,7 @@ public class daoOrdenesCompras {
         return rows;
     }
     
-        public int insert2(clsOrdenesCompras producto) {
+        public int insert2(clsOrdenesCompras_DanielRoblero producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -151,7 +151,7 @@ public class daoOrdenesCompras {
     }
 
 
-    public int update(clsOrdenesCompras producto) {
+    public int update(clsOrdenesCompras_DanielRoblero producto) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -176,7 +176,7 @@ public class daoOrdenesCompras {
 
         return rows;
     }
-        public int update2(clsOrdenesCompras producto) {
+        public int update2(clsOrdenesCompras_DanielRoblero producto) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -204,7 +204,7 @@ public class daoOrdenesCompras {
         return rows;
     }
 
-    public int delete(clsOrdenesCompras producto) {
+    public int delete(clsOrdenesCompras_DanielRoblero producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -225,7 +225,7 @@ public class daoOrdenesCompras {
 
         return rows;
     }
-    public int delete2(clsOrdenesCompras producto) {
+    public int delete2(clsOrdenesCompras_DanielRoblero producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -247,7 +247,7 @@ public class daoOrdenesCompras {
         return rows;
     }
 
-    public clsOrdenesCompras query(clsOrdenesCompras compras) {
+    public clsOrdenesCompras_DanielRoblero query(clsOrdenesCompras_DanielRoblero compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -263,7 +263,7 @@ public class daoOrdenesCompras {
                 String ordfecha = rs.getString("ordfecha");
                 int provid = rs.getInt("provid");
 
-                compras = new clsOrdenesCompras();
+                compras = new clsOrdenesCompras_DanielRoblero();
                 compras.setordid(ordid);
                 compras.setordfecha(ordfecha);
                 compras.setprovid(provid);
@@ -280,7 +280,7 @@ public class daoOrdenesCompras {
         //return personas;  // Si se utiliza un ArrayList
         return compras;
     }
-        public clsOrdenesCompras query2(clsOrdenesCompras compras) {
+        public clsOrdenesCompras_DanielRoblero query2(clsOrdenesCompras_DanielRoblero compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -297,7 +297,7 @@ public class daoOrdenesCompras {
                 int prodid = rs.getInt("prodid");
 
                 
-                compras = new clsOrdenesCompras();
+                compras = new clsOrdenesCompras_DanielRoblero();
                 compras.setordcantidad(ordcantidad);
                 compras.setordcosto(ordcosto);
                 compras.setprodid(prodid);

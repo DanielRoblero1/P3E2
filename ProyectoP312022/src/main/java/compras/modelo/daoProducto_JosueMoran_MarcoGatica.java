@@ -7,7 +7,7 @@ package compras.modelo;
 
 import compras.modelo.*;
 import seguridad.modelo.*;
-import compras.controlador.clsProducto;
+import compras.controlador.clsProducto_JosueMoran_MarcoGatica;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoProducto {
+public class daoProducto_JosueMoran_MarcoGatica {
 
     private static final String SQL_SELECT = "SELECT prodid, provid, prodnombre,prodmarca,prodprecio,prodlinea,prodexistencia FROM tbl_producto";
     private static final String SQL_INSERT = "INSERT INTO tbl_producto( provid, prodnombre, prodmarca, prodprecio, Prodlinea, prodexistencia) VALUES ( ?,?,?,?,?,?)";
@@ -24,12 +24,12 @@ public class daoProducto {
     private static final String SQL_DELETE = "DELETE FROM tbl_producto WHERE tbl_producto.prodid = ?";
     private static final String SQL_QUERY = "SELECT prodid, provid, prodnombre,prodmarca,prodprecio,prodlinea,prodexistencia FROM tbl_producto WHERE tbl_producto.prodid = ?";
 
-    public List<clsProducto> select() {
+    public List<clsProducto_JosueMoran_MarcoGatica> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsProducto producto = null;
-        List<clsProducto> product = new ArrayList<clsProducto>();
+        clsProducto_JosueMoran_MarcoGatica producto = null;
+        List<clsProducto_JosueMoran_MarcoGatica> product = new ArrayList<clsProducto_JosueMoran_MarcoGatica>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -43,7 +43,7 @@ public class daoProducto {
                 String prodlinea = rs.getString("prodlinea");
                 String prodexistencia = rs.getString("prodexistencia");
 
-                producto = new clsProducto();
+                producto = new clsProducto_JosueMoran_MarcoGatica();
                 producto.setProdid(prodid);
                 producto.setProvid(provid);
                 producto.setProdnombre(prodnombre);
@@ -66,7 +66,7 @@ public class daoProducto {
         return product;
     }
 
-    public int insert(clsProducto producto) {
+    public int insert(clsProducto_JosueMoran_MarcoGatica producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -93,7 +93,7 @@ public class daoProducto {
     }
 
 
-    public int update(clsProducto producto) {
+    public int update(clsProducto_JosueMoran_MarcoGatica producto) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -121,7 +121,7 @@ public class daoProducto {
         return rows;
     }
 
-    public int delete(clsProducto producto) {
+    public int delete(clsProducto_JosueMoran_MarcoGatica producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -143,7 +143,7 @@ public class daoProducto {
         return rows;
     }
 
-    public clsProducto query(clsProducto producto) {
+    public clsProducto_JosueMoran_MarcoGatica query(clsProducto_JosueMoran_MarcoGatica producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -162,7 +162,7 @@ public class daoProducto {
                 String prodlinea = rs.getString("prodlinea");
                 String prodexistencia = rs.getString("prodexistencia");
 
-                producto = new clsProducto();
+                producto = new clsProducto_JosueMoran_MarcoGatica();
                 producto.setProvid(provid);
                 producto.setProdnombre(prodnombre);
                 producto.setProdmarca(prodmarca);
@@ -183,11 +183,11 @@ public class daoProducto {
         return producto;
     }
 
-    public void insert2(clsProducto productoAInsertar2) {
+    public void insert2(clsProducto_JosueMoran_MarcoGatica productoAInsertar2) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void update2(clsProducto productoAActualizar2) {
+    public void update2(clsProducto_JosueMoran_MarcoGatica productoAActualizar2) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -7,7 +7,7 @@ package compras.modelo;
 
 import compras.modelo.*;
 import seguridad.modelo.*;
-import compras.controlador.clsConcepto;
+import compras.controlador.clsConcepto_DiegoCortez;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoConcepto {
+public class daoConcepto_DiegoCortez {
 
     private static final String SQL_SELECT = "SELECT conid, connombre, conefecto, conestatus FROM tbl_concepto";
     private static final String SQL_INSERT = "INSERT INTO tbl_concepto ( conid, connombre, conefecto, conestatus) VALUES (?,?,?,?)";
@@ -24,12 +24,12 @@ public class daoConcepto {
     private static final String SQL_DELETE = "DELETE FROM tbl_concepto WHERE tbl_concepto.conid = ?";
     private static final String SQL_QUERY = "SELECT conid, connombre, conefecto, conestatus FROM tbl_concepto WHERE conid=?";
 
-    public List<clsConcepto> select() {
+    public List<clsConcepto_DiegoCortez> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsConcepto concepto = null;
-        List<clsConcepto> concept = new ArrayList<clsConcepto>();
+        clsConcepto_DiegoCortez concepto = null;
+        List<clsConcepto_DiegoCortez> concept = new ArrayList<clsConcepto_DiegoCortez>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -40,7 +40,7 @@ public class daoConcepto {
                 boolean conefecto = rs.getBoolean("conefecto");
                 boolean conestatus = rs.getBoolean("conestatus");
 
-                concepto = new clsConcepto();
+                concepto = new clsConcepto_DiegoCortez();
                 concepto.setConid(conid);
                 concepto.setConnombre(connombre);
                 concepto.setConefecto(conefecto);
@@ -60,7 +60,7 @@ public class daoConcepto {
         return concept;
     }
 
-    public int insert(clsConcepto concepto) {
+    public int insert(clsConcepto_DiegoCortez concepto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -86,7 +86,7 @@ public class daoConcepto {
     }
 
 
-    public int update(clsConcepto concepto) {
+    public int update(clsConcepto_DiegoCortez concepto) {
        Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -112,7 +112,7 @@ public class daoConcepto {
         return rows;
     }
 
-    public int delete(clsConcepto concepto) {
+    public int delete(clsConcepto_DiegoCortez concepto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -134,7 +134,7 @@ public class daoConcepto {
         return rows;
     }
 
-    public clsConcepto query(clsConcepto concepto) {
+    public clsConcepto_DiegoCortez query(clsConcepto_DiegoCortez concepto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -151,7 +151,7 @@ public class daoConcepto {
                 boolean conefecto = rs.getBoolean("conefecto");
                 boolean conestatus = rs.getBoolean("conestatus");
 
-                concepto = new clsConcepto();
+                concepto = new clsConcepto_DiegoCortez();
                 concepto.setConid(conid);
                 concepto.setConnombre(connombre);
                 concepto.setConefecto(conefecto);

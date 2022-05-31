@@ -7,8 +7,8 @@ package compras.vista;
 
 import seguridad.vista.*;
 import compras.vista.*;
-import compras.modelo.daoProducto;
-import compras.controlador.clsProducto;
+import compras.modelo.daoProducto_JosueMoran_MarcoGatica;
+import compras.controlador.clsProducto_JosueMoran_MarcoGatica;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
+public class frmMantenimientoProducto_JosueMoran_MarcoGatica extends javax.swing.JInternalFrame {
 
   
 
@@ -32,8 +32,8 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         modelo.addColumn("Precio Producto");
         modelo.addColumn("Linea");
         modelo.addColumn("existencia");
-        daoProducto productoDAO = new daoProducto();
-        List<clsProducto> producto = productoDAO.select();
+        daoProducto_JosueMoran_MarcoGatica productoDAO = new daoProducto_JosueMoran_MarcoGatica();
+        List<clsProducto_JosueMoran_MarcoGatica> producto = productoDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[7];
         for (int i = 0; i < producto.size(); i++) {
@@ -50,8 +50,8 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
     }
 
     public void buscarProducto() {
-        clsProducto productoAConsultar = new clsProducto();
-        daoProducto productoDAO = new daoProducto();
+        clsProducto_JosueMoran_MarcoGatica productoAConsultar = new clsProducto_JosueMoran_MarcoGatica();
+        daoProducto_JosueMoran_MarcoGatica productoDAO = new daoProducto_JosueMoran_MarcoGatica();
         productoAConsultar.setProdid(Integer.parseInt(txtbuscado.getText()));
         productoAConsultar = productoDAO.query(productoAConsultar);
         txtProveedor.setText(String.valueOf(productoAConsultar.getProvid()));
@@ -63,7 +63,7 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
         
     }
 
-    public frmMantenimientoProducto() {
+    public frmMantenimientoProducto_JosueMoran_MarcoGatica() {
         initComponents();
         llenadoDeTablas();
        
@@ -263,16 +263,16 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        daoProducto productoDAO = new daoProducto();
-        clsProducto productoAEliminar = new clsProducto();
+        daoProducto_JosueMoran_MarcoGatica productoDAO = new daoProducto_JosueMoran_MarcoGatica();
+        clsProducto_JosueMoran_MarcoGatica productoAEliminar = new clsProducto_JosueMoran_MarcoGatica();
         productoAEliminar.setProdid(Integer.parseInt(txtbuscado.getText()));
         productoDAO.delete(productoAEliminar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoProducto productoDAO = new daoProducto();
-        clsProducto productoAInsertar = new clsProducto();
+        daoProducto_JosueMoran_MarcoGatica productoDAO = new daoProducto_JosueMoran_MarcoGatica();
+        clsProducto_JosueMoran_MarcoGatica productoAInsertar = new clsProducto_JosueMoran_MarcoGatica();
         productoAInsertar.setProvid(Integer.parseInt(txtProveedor.getText()));
         productoAInsertar.setProdnombre(txtNombre.getText());
         productoAInsertar.setProdmarca(txtMarca.getText());
@@ -290,8 +290,8 @@ public class frmMantenimientoProducto extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        daoProducto productoDAO = new daoProducto();
-        clsProducto productoAActualizar = new clsProducto();
+        daoProducto_JosueMoran_MarcoGatica productoDAO = new daoProducto_JosueMoran_MarcoGatica();
+        clsProducto_JosueMoran_MarcoGatica productoAActualizar = new clsProducto_JosueMoran_MarcoGatica();
         productoAActualizar.setProdid(Integer.parseInt(txtbuscado.getText()));
         productoAActualizar.setProvid(Integer.parseInt(txtProveedor.getText()));
         productoAActualizar.setProdnombre(txtNombre.getText());

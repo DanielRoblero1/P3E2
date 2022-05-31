@@ -7,8 +7,8 @@ package compras.vista;
 
 import seguridad.vista.*;
 import compras.vista.*;
-import compras.modelo.daoConcepto;
-import compras.controlador.clsConcepto;
+import compras.modelo.daoConcepto_DiegoCortez;
+import compras.controlador.clsConcepto_DiegoCortez;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
+public class frmMantenimientoConcepto_DiegoCortez extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -27,8 +27,8 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre Concepto");
         modelo.addColumn("Efecto Concepto");
         modelo.addColumn("Estado Concepto");
-        daoConcepto conceptoDAO = new daoConcepto();
-        List<clsConcepto> concepto = conceptoDAO.select();
+        daoConcepto_DiegoCortez conceptoDAO = new daoConcepto_DiegoCortez();
+        List<clsConcepto_DiegoCortez> concepto = conceptoDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[5];
         for (int i = 0; i < concepto.size(); i++) {
@@ -42,8 +42,8 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
     }
 
     public void buscarConcepto() {
-        clsConcepto conceptoAConsultar = new clsConcepto();
-        daoConcepto conceptoDAO = new daoConcepto();
+        clsConcepto_DiegoCortez conceptoAConsultar = new clsConcepto_DiegoCortez();
+        daoConcepto_DiegoCortez conceptoDAO = new daoConcepto_DiegoCortez();
         conceptoAConsultar.setConid(Integer.parseInt(txtbuscado.getText()));
         conceptoAConsultar = conceptoDAO.query(conceptoAConsultar);
         txtConNombre.setText(conceptoAConsultar.getConnombre());
@@ -52,7 +52,7 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
 
     }
 
-    public frmMantenimientoConcepto() {
+    public frmMantenimientoConcepto_DiegoCortez() {
         initComponents();
         llenadoDeTablas();
 
@@ -221,8 +221,8 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea proceder?", "Va a borrar una tabla...",
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
         if(resp==0){
-        daoConcepto conceptoDAO = new daoConcepto();
-        clsConcepto conceptoAEliminar = new clsConcepto();
+        daoConcepto_DiegoCortez conceptoDAO = new daoConcepto_DiegoCortez();
+        clsConcepto_DiegoCortez conceptoAEliminar = new clsConcepto_DiegoCortez();
         conceptoAEliminar.setConid(Integer.parseInt(txtbuscado.getText()));
         conceptoDAO.delete(conceptoAEliminar);
         llenadoDeTablas();
@@ -232,8 +232,8 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoConcepto conceptoDAO = new daoConcepto();
-        clsConcepto conceptoAInsertar = new clsConcepto();
+        daoConcepto_DiegoCortez conceptoDAO = new daoConcepto_DiegoCortez();
+        clsConcepto_DiegoCortez conceptoAInsertar = new clsConcepto_DiegoCortez();
         conceptoAInsertar.setConnombre(txtConNombre.getText());
         conceptoAInsertar.setConefecto(poner());
         
@@ -266,8 +266,8 @@ public class frmMantenimientoConcepto extends javax.swing.JInternalFrame {
         int resp = JOptionPane.showConfirmDialog(null, "¿Desea proceder?", "Va a borrar una tabla...",
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
         if(resp==0){
-        daoConcepto conceptoDAO = new daoConcepto();
-        clsConcepto conceptoAActualizar = new clsConcepto();
+        daoConcepto_DiegoCortez conceptoDAO = new daoConcepto_DiegoCortez();
+        clsConcepto_DiegoCortez conceptoAActualizar = new clsConcepto_DiegoCortez();
         conceptoAActualizar.setConid(Integer.parseInt(txtbuscado.getText()));
         conceptoAActualizar.setConnombre(txtConNombre.getText());
         conceptoAActualizar.setConefecto(buscar());

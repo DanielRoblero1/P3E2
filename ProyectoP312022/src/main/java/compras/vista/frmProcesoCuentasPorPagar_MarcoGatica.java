@@ -7,14 +7,14 @@ package compras.vista;
 
 import seguridad.vista.*;
 import compras.vista.*;
-import compras.controlador.clsProveedor;
-import compras.modelo.daoProveedor;
-import compras.modelo.daoCompras;
-import compras.controlador.clsCompras;
-import compras.controlador.clsConcepto;
-import compras.modelo.daoConcepto;
-import compras.modelo.daoCuentasPorPagar;
-import compras.controlador.clsCuentasPorPagar;
+import compras.controlador.clsProveedorDanielRoblero;
+import compras.modelo.daoProveedorDanielRoblero;
+import compras.modelo.daoCompras_JosueMoran_DiegoCortez;
+import compras.controlador.clsCompras_JosueMoran_DiegoCortez;
+import compras.controlador.clsConcepto_DiegoCortez;
+import compras.modelo.daoConcepto_DiegoCortez;
+import compras.modelo.daoCuentasPorPagar_MarcoGatica;
+import compras.controlador.clsCuentasPorPagar_MarcoGatica;
 
 import java.util.List;
 import java.util.Calendar;
@@ -26,25 +26,25 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmProcesoCuentasPorPagar extends javax.swing.JInternalFrame {
+public class frmProcesoCuentasPorPagar_MarcoGatica extends javax.swing.JInternalFrame {
     
 public void llenadoDeCombos() {
-        daoConcepto conDAO = new daoConcepto();
-        List<clsConcepto> concepto = conDAO.select();
+        daoConcepto_DiegoCortez conDAO = new daoConcepto_DiegoCortez();
+        List<clsConcepto_DiegoCortez> concepto = conDAO.select();
 
         CbxConcepto.addItem("Seleccione Un Codigo");
         for (int i = 0; i < concepto.size(); i++) {
             CbxConcepto.addItem(String.valueOf(concepto.get(i).getConid()));
         }
 
-        daoCompras comprasDao = new daoCompras();
-        List<clsCompras> compra = comprasDao.select();
+        daoCompras_JosueMoran_DiegoCortez comprasDao = new daoCompras_JosueMoran_DiegoCortez();
+        List<clsCompras_JosueMoran_DiegoCortez> compra = comprasDao.select();
         CbxCompras.addItem("Seleccione Un codigo");
         for (int i = 0; i < compra.size(); i++) {
             CbxCompras.addItem(String.valueOf(compra.get(i).getComid()));    
         }
-         daoProveedor provDao = new daoProveedor();
-        List<clsProveedor> proveedor = provDao.select();
+         daoProveedorDanielRoblero provDao = new daoProveedorDanielRoblero();
+        List<clsProveedorDanielRoblero> proveedor = provDao.select();
         CbxProveedor.addItem("Seleccione Un codigo");
         for (int i = 0; i < proveedor.size(); i++) {
             CbxProveedor.addItem(String.valueOf(proveedor.get(i).getprovid()));
@@ -64,8 +64,8 @@ public void llenadoDeCombos() {
         modelo.addColumn("Emision");
         modelo.addColumn("Vencimiento");
         
-        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        List<clsCuentasPorPagar> cuentaporpagar = cuentasDAO.select();
+        daoCuentasPorPagar_MarcoGatica cuentasDAO = new daoCuentasPorPagar_MarcoGatica();
+        List<clsCuentasPorPagar_MarcoGatica> cuentaporpagar = cuentasDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[9];
         for (int i = 0; i < cuentaporpagar.size(); i++) {
@@ -84,8 +84,8 @@ public void llenadoDeCombos() {
     }
 
     public void buscarCuenta() {
-        clsCuentasPorPagar cuentasporpagarAConsultar = new clsCuentasPorPagar();
-        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
+        clsCuentasPorPagar_MarcoGatica cuentasporpagarAConsultar = new clsCuentasPorPagar_MarcoGatica();
+        daoCuentasPorPagar_MarcoGatica cuentasDAO = new daoCuentasPorPagar_MarcoGatica();
         cuentasporpagarAConsultar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
         cuentasporpagarAConsultar = cuentasDAO.query(cuentasporpagarAConsultar);
         
@@ -100,7 +100,7 @@ public void llenadoDeCombos() {
         
     }
 
-    public frmProcesoCuentasPorPagar() {
+    public frmProcesoCuentasPorPagar_MarcoGatica() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -414,16 +414,16 @@ public void llenadoDeCombos() {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        clsCuentasPorPagar cuentasporpagarAEliminar = new clsCuentasPorPagar();
+        daoCuentasPorPagar_MarcoGatica cuentasDAO = new daoCuentasPorPagar_MarcoGatica();
+        clsCuentasPorPagar_MarcoGatica cuentasporpagarAEliminar = new clsCuentasPorPagar_MarcoGatica();
         cuentasporpagarAEliminar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
         cuentasDAO.delete(cuentasporpagarAEliminar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        clsCuentasPorPagar cuentasporpagarAInsertar = new clsCuentasPorPagar();
+        daoCuentasPorPagar_MarcoGatica cuentasDAO = new daoCuentasPorPagar_MarcoGatica();
+        clsCuentasPorPagar_MarcoGatica cuentasporpagarAInsertar = new clsCuentasPorPagar_MarcoGatica();
         cuentasporpagarAInsertar.setConid(Integer.parseInt(String.valueOf(CbxConcepto.getSelectedItem())));
         cuentasporpagarAInsertar.setProvid(Integer.parseInt(String.valueOf(CbxProveedor.getSelectedItem())));
         cuentasporpagarAInsertar.setComid(Integer.parseInt(String.valueOf(CbxCompras.getSelectedItem())));
@@ -453,8 +453,8 @@ public void llenadoDeCombos() {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         //        // TODO add your handling code here:
-        daoCuentasPorPagar cuentasDAO = new daoCuentasPorPagar();
-        clsCuentasPorPagar cuentasporpagarAActualizar = new clsCuentasPorPagar();
+        daoCuentasPorPagar_MarcoGatica cuentasDAO = new daoCuentasPorPagar_MarcoGatica();
+        clsCuentasPorPagar_MarcoGatica cuentasporpagarAActualizar = new clsCuentasPorPagar_MarcoGatica();
         cuentasporpagarAActualizar.setCuentapagarid(Integer.parseInt(txtbuscado.getText()));
         cuentasporpagarAActualizar.setConid(Integer.parseInt(String.valueOf(CbxConcepto.getSelectedItem())));
         cuentasporpagarAActualizar.setProvid(Integer.parseInt(String.valueOf(CbxProveedor.getSelectedItem())));

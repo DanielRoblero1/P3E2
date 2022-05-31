@@ -1,16 +1,16 @@
 package compras.controlador;
 import compras.vista.*;
 
-public class clsConcepto {
+public class clsConcepto_DiegoCortez {
  private int conid;   
  private String connombre;
  private Boolean conefecto;
 private Boolean conestatus;
 
-    public clsConcepto() {
+    public clsConcepto_DiegoCortez() {
     }
 
-    public clsConcepto(int conid, String connombre, Boolean conefecto, Boolean conestatus) {
+    public clsConcepto_DiegoCortez(int conid, String connombre, Boolean conefecto, Boolean conestatus) {
         this.conid = conid;
         this.connombre = connombre;
         this.conefecto = conefecto;

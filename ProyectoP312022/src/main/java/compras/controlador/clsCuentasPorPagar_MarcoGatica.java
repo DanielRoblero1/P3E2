@@ -1,7 +1,7 @@
 package compras.controlador;
 import compras.vista.*;
 
-public class clsCuentasPorPagar {
+public class clsCuentasPorPagar_MarcoGatica {
  private int cuentapagarid;   
  private int conid; 
  private int comid;
@@ -12,10 +12,10 @@ public class clsCuentasPorPagar {
  private String cuentafechaemi;
  private String cuentafechavenci;
  
-public clsCuentasPorPagar() {
+public clsCuentasPorPagar_MarcoGatica() {
     }
 
-    public clsCuentasPorPagar(int cuentapagarid, int conid, int comid, int provid, int cuentadoc, int cuentasaldo, int cuentavalor, int cuentareferencia, String cuentafechaemi, String cuentafechavenci) {
+    public clsCuentasPorPagar_MarcoGatica(int cuentapagarid, int conid, int comid, int provid, int cuentadoc, int cuentasaldo, int cuentavalor, int cuentareferencia, String cuentafechaemi, String cuentafechavenci) {
         this.cuentapagarid = cuentapagarid;
         this.conid = conid;
         this.comid = comid;

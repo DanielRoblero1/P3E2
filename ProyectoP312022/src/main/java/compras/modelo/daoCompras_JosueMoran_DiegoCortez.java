@@ -7,7 +7,7 @@ package compras.modelo;
 
 import compras.modelo.*;
 import seguridad.modelo.*;
-import compras.controlador.clsCompras;
+import compras.controlador.clsCompras_JosueMoran_DiegoCortez;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author visitante
  */
-public class daoCompras {
+public class daoCompras_JosueMoran_DiegoCortez {
 
     private static final String SQL_SELECT = "SELECT comid ,provid, comserie, ordid , comfechaemi, comfechavenci FROM tbl_compraencabezado";
     private static final String SQL_SELECT2 = "SELECT prodid, ordcantidad, ordcosto FROM tbl_compradetalle";
@@ -32,12 +32,12 @@ public class daoCompras {
     private static final String SQL_QUERY3 = "SELECT prodexistencia FROM tbl_producto WHERE prodid = ?";
     private static final String SQL_QUERY4 = "SELECT ordcantidad FROM tbl_compradetalle WHERE comid = ?";
     private static final String SQL_QUERY5 = "SELECT prodid FROM tbl_compradetalle WHERE tbl_compradetalle.comid=?";
-    public List<clsCompras> select() {
+    public List<clsCompras_JosueMoran_DiegoCortez> select() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsCompras compras = null;
-        List<clsCompras> compra = new ArrayList<clsCompras>();
+        clsCompras_JosueMoran_DiegoCortez compras = null;
+        List<clsCompras_JosueMoran_DiegoCortez> compra = new ArrayList<clsCompras_JosueMoran_DiegoCortez>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -50,7 +50,7 @@ public class daoCompras {
                 String comfechaemi = rs.getString("comfechaemi");
                 String comfechavenci = rs.getString("comfechavenci");
 
-                compras = new clsCompras();
+                compras = new clsCompras_JosueMoran_DiegoCortez();
                 compras.setComid(comid);
                 compras.setProvid(provid);
                 compras.setComserie(comserie);
@@ -72,12 +72,12 @@ public class daoCompras {
         return compra;
     }
 
-    public List<clsCompras> select2() {
+    public List<clsCompras_JosueMoran_DiegoCortez> select2() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        clsCompras compras = null;
-        List<clsCompras> compra = new ArrayList<clsCompras>();
+        clsCompras_JosueMoran_DiegoCortez compras = null;
+        List<clsCompras_JosueMoran_DiegoCortez> compra = new ArrayList<clsCompras_JosueMoran_DiegoCortez>();
         try {
             conn = clsConexion.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT2);
@@ -88,7 +88,7 @@ public class daoCompras {
                 int ordcantidad = rs.getInt("ordcantidad");
                 int ordcosto = rs.getInt("ordcosto");
 
-                compras = new clsCompras();
+                compras = new clsCompras_JosueMoran_DiegoCortez();
 
                 compras.setProdid(prodid);
                 compras.setOrdcantidad(ordcantidad);
@@ -108,7 +108,7 @@ public class daoCompras {
         return compra;
     }
 
-    public int insert(clsCompras producto) {
+    public int insert(clsCompras_JosueMoran_DiegoCortez producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -134,7 +134,7 @@ public class daoCompras {
         return rows;
     }
 
-    public int insert2(clsCompras producto) {
+    public int insert2(clsCompras_JosueMoran_DiegoCortez producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -159,7 +159,7 @@ public class daoCompras {
         return rows;
     }
 
-    public int update(clsCompras producto) {
+    public int update(clsCompras_JosueMoran_DiegoCortez producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -187,7 +187,7 @@ public class daoCompras {
         return rows;
     }
 
-    public int update2(clsCompras producto) {
+    public int update2(clsCompras_JosueMoran_DiegoCortez producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -213,7 +213,7 @@ public class daoCompras {
         return rows;
     }
  
-    public int update3(clsCompras producto) {
+    public int update3(clsCompras_JosueMoran_DiegoCortez producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -239,7 +239,7 @@ public class daoCompras {
         return rows;
     }
 
-    public int delete(clsCompras producto) {
+    public int delete(clsCompras_JosueMoran_DiegoCortez producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -261,7 +261,7 @@ public class daoCompras {
         return rows;
     }
 
-    public int delete2(clsCompras producto) {
+    public int delete2(clsCompras_JosueMoran_DiegoCortez producto) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int rows = 0;
@@ -283,7 +283,7 @@ public class daoCompras {
         return rows;
     }
 
-    public clsCompras query(clsCompras compras) {
+    public clsCompras_JosueMoran_DiegoCortez query(clsCompras_JosueMoran_DiegoCortez compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -302,7 +302,7 @@ public class daoCompras {
                 String comfechaemi = rs.getString("comfechaemi");
                 String comfechavenci = rs.getString("comfechavenci");
 
-                compras = new clsCompras();
+                compras = new clsCompras_JosueMoran_DiegoCortez();
                 compras.setComid(comid);
                 compras.setProvid(provid);
                 compras.setComserie(comserie);
@@ -323,7 +323,7 @@ public class daoCompras {
         return compras;
     }
 
-    public clsCompras query2(clsCompras compras) {
+    public clsCompras_JosueMoran_DiegoCortez query2(clsCompras_JosueMoran_DiegoCortez compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -340,7 +340,7 @@ public class daoCompras {
                 int ordcosto = rs.getInt("ordcosto");
                 
 
-                compras = new clsCompras();
+                compras = new clsCompras_JosueMoran_DiegoCortez();
                 compras.setProdid(prodid);
                 compras.setOrdcantidad(ordcantidad);
                 compras.setOrdcosto(ordcosto);
@@ -359,7 +359,7 @@ public class daoCompras {
         return compras;
     }
 
-    public clsCompras query3(clsCompras compras) {
+    public clsCompras_JosueMoran_DiegoCortez query3(clsCompras_JosueMoran_DiegoCortez compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -374,7 +374,7 @@ public class daoCompras {
                 int prodexistencia = rs.getInt("prodexistencia");
                 
 
-                compras = new clsCompras();
+                compras = new clsCompras_JosueMoran_DiegoCortez();
                 compras.setProdexistencia(prodexistencia);
 
             }
@@ -390,7 +390,7 @@ public class daoCompras {
         //return personas;  // Si se utiliza un ArrayList
         return compras;
     }
-    public clsCompras query4(clsCompras compras) {
+    public clsCompras_JosueMoran_DiegoCortez query4(clsCompras_JosueMoran_DiegoCortez compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -405,7 +405,7 @@ public class daoCompras {
                 int ordcantidad= rs.getInt("ordcantidad");
                 
 
-                compras = new clsCompras();
+                compras = new clsCompras_JosueMoran_DiegoCortez();
                 compras.setProdexistencia(ordcantidad);
 
             }
@@ -422,7 +422,7 @@ public class daoCompras {
         return compras;
     }
 
-        public clsCompras query5(clsCompras compras) {
+        public clsCompras_JosueMoran_DiegoCortez query5(clsCompras_JosueMoran_DiegoCortez compras) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -437,7 +437,7 @@ public class daoCompras {
                 int ordcantidad= rs.getInt("prodid");
                 
 
-                compras = new clsCompras();
+                compras = new clsCompras_JosueMoran_DiegoCortez();
                 compras.setProdexistencia(ordcantidad);
 
             }

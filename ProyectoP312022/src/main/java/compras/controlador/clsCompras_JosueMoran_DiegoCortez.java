@@ -2,7 +2,7 @@ package compras.controlador;
 
 import compras.vista.*;
 
-public class clsCompras {
+public class clsCompras_JosueMoran_DiegoCortez {
  private int comid;   
  private int provid;
  private int comserie;
@@ -16,10 +16,10 @@ public class clsCompras {
  private int prodexistenciaA;
  private int comid2;
 
-    public clsCompras() {
+    public clsCompras_JosueMoran_DiegoCortez() {
     }
 
-    public clsCompras(int comid2 ,int prodexistenciaA ,int prodexistencia,int comid, int provid, int comserie, int ordid, int prodid, int ordcantidad, int ordcosto, String comfechaemi, String comfechavenci) {
+    public clsCompras_JosueMoran_DiegoCortez(int comid2 ,int prodexistenciaA ,int prodexistencia,int comid, int provid, int comserie, int ordid, int prodid, int ordcantidad, int ordcosto, String comfechaemi, String comfechavenci) {
         this.comid = comid;
         this.provid = provid;
         this.comserie = comserie;

@@ -6,8 +6,8 @@
 package compras.vista;
 
 import compras.vista.*;
-import compras.modelo.daoProveedor;
-import compras.controlador.clsProveedor;
+import compras.modelo.daoProveedorDanielRoblero;
+import compras.controlador.clsProveedorDanielRoblero;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientoProveedor extends javax.swing.JInternalFrame {
+public class frmMantenimientoProveedorDanielRoblero extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
         /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -37,8 +37,8 @@ public class frmMantenimientoProveedor extends javax.swing.JInternalFrame {
         modelo.addColumn("Estado Proveedor");
         modelo.addColumn("Telefono Proveedor");
         modelo.addColumn("Direccion Proveedor");
-        daoProveedor vendedorDAO = new daoProveedor();
-        List<clsProveedor> vendedores = vendedorDAO.select();
+        daoProveedorDanielRoblero vendedorDAO = new daoProveedorDanielRoblero();
+        List<clsProveedorDanielRoblero> vendedores = vendedorDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[6];
         for (int i = 0; i < vendedores.size(); i++) {
@@ -55,8 +55,8 @@ public class frmMantenimientoProveedor extends javax.swing.JInternalFrame {
     }
 
     public void buscarVendedor() {
-        clsProveedor vendedorAConsultar = new clsProveedor();
-        daoProveedor vendedorDAO = new daoProveedor();
+        clsProveedorDanielRoblero vendedorAConsultar = new clsProveedorDanielRoblero();
+        daoProveedorDanielRoblero vendedorDAO = new daoProveedorDanielRoblero();
         vendedorAConsultar.setprovid(Integer.parseInt(txtbuscado.getText()));
         vendedorAConsultar = vendedorDAO.query(vendedorAConsultar);
         txtNombre.setText(vendedorAConsultar.getprovnombre());
@@ -66,7 +66,7 @@ public class frmMantenimientoProveedor extends javax.swing.JInternalFrame {
         txtDireccion.setText(vendedorAConsultar.getprovtdireccion());      
     }
 
-    public frmMantenimientoProveedor() {
+    public frmMantenimientoProveedorDanielRoblero() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -266,16 +266,16 @@ public class frmMantenimientoProveedor extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        daoProveedor vendedorDAO = new daoProveedor();
-        clsProveedor vendedorAEliminar = new clsProveedor();
+        daoProveedorDanielRoblero vendedorDAO = new daoProveedorDanielRoblero();
+        clsProveedorDanielRoblero vendedorAEliminar = new clsProveedorDanielRoblero();
         vendedorAEliminar.setprovid(Integer.parseInt(txtbuscado.getText()));
         vendedorDAO.delete(vendedorAEliminar);
         llenadoDeTablas();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoProveedor vendedorDAO = new daoProveedor();
-        clsProveedor vendedorAInsertar = new clsProveedor();
+        daoProveedorDanielRoblero vendedorDAO = new daoProveedorDanielRoblero();
+        clsProveedorDanielRoblero vendedorAInsertar = new clsProveedorDanielRoblero();
         vendedorAInsertar.setprovnombre(txtNombre.getText());
         vendedorAInsertar.setprovsaldo(Integer.parseInt(txtSaldo.getText()));
         if (cbEstado.getSelectedItem().equals("Activo")) {
@@ -297,8 +297,8 @@ public class frmMantenimientoProveedor extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
 //        // TODO add your handling code here:
-        daoProveedor vendedorDAO = new daoProveedor();
-        clsProveedor vendedorAActualizar = new clsProveedor();
+        daoProveedorDanielRoblero vendedorDAO = new daoProveedorDanielRoblero();
+        clsProveedorDanielRoblero vendedorAActualizar = new clsProveedorDanielRoblero();
         vendedorAActualizar.setprovid(Integer.parseInt(txtbuscado.getText()));
         vendedorAActualizar.setprovnombre(txtNombre.getText());
         vendedorAActualizar.setprovsaldo(Integer.parseInt(txtSaldo.getText()));
