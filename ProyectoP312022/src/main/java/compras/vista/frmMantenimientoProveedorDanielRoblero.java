@@ -104,9 +104,10 @@ public class frmMantenimientoProveedorDanielRoblero extends javax.swing.JInterna
         label4 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        AyudaCodigo = new javax.swing.JButton();
         cbEstado = new javax.swing.JComboBox<>();
         txtEstado = new javax.swing.JLabel();
+        AyudaModificar = new javax.swing.JButton();
 
         lb2.setForeground(new java.awt.Color(204, 204, 204));
         lb2.setText(".");
@@ -244,14 +245,14 @@ public class frmMantenimientoProveedorDanielRoblero extends javax.swing.JInterna
         jLabel1.setText("Codigo Proveedor");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("?");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AyudaCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        AyudaCodigo.setText("?");
+        AyudaCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AyudaCodigoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 40, 20));
+        getContentPane().add(AyudaCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 40, -1));
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         getContentPane().add(cbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 90, -1));
@@ -260,6 +261,15 @@ public class frmMantenimientoProveedorDanielRoblero extends javax.swing.JInterna
         txtEstado.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         txtEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 90, 20));
+
+        AyudaModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        AyudaModificar.setText("?");
+        AyudaModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AyudaModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AyudaModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 40, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -349,20 +359,26 @@ public class frmMantenimientoProveedorDanielRoblero extends javax.swing.JInterna
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AyudaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AyudaCodigoActionPerformed
         // TODO add your handling code here:
     JOptionPane.showMessageDialog(rootPane, "INGRESE EL CODIGO DEL PROVEEDOR QUE DESEA BUSCAR,ELIMINAR O REGISTRAR");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AyudaCodigoActionPerformed
+
+    private void AyudaModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AyudaModificarActionPerformed
+        // TODO add your handling code here:
+JOptionPane.showMessageDialog(rootPane, "MODIFICARA TODO LOS VALORES MENOS EL SALDO DEL PROVEEDOR");
+    }//GEN-LAST:event_AyudaModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AyudaCodigo;
+    private javax.swing.JButton AyudaModificar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cbEstado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -20,7 +20,7 @@ public class daoProveedorDanielRoblero {
 
     private static final String SQL_SELECT2 = "SELECT provid, provnombre, provsaldo, provestado, provtelefono, provdireccion FROM tbl_proveedor";
     private static final String SQL_INSERT = "INSERT INTO tbl_proveedor(provnombre,provsaldo,provestado,provtelefono,provdireccion) VALUES(?,?,?,?,?)";
-    private static final String SQL_UPDATE = "UPDATE tbl_proveedor SET provnombre = ?, provsaldo = ?, provestado = ?, provtelefono = ?, provdireccion = ? WHERE tbl_proveedor.provid = ?";
+    private static final String SQL_UPDATE = "UPDATE tbl_proveedor SET provnombre = ?, provestado = ?, provtelefono = ?, provdireccion = ? WHERE tbl_proveedor.provid = ?";
     private static final String SQL_DELETE = "DELETE FROM tbl_proveedor WHERE tbl_proveedor.provid = ?";
     private static final String SQL_QUERY = "SELECT provid, provnombre, provsaldo, provestado, provtelefono, provdireccion FROM tbl_proveedor WHERE provid = ?";
 
@@ -100,11 +100,10 @@ public class daoProveedorDanielRoblero {
             System.out.println("ejecutando query: " + SQL_UPDATE);
             stmt = conn.prepareStatement(SQL_UPDATE);
             stmt.setString(1, proveedor.getprovnombre());
-            stmt.setInt(2, proveedor.getprovsaldo());
-            stmt.setBoolean(3, proveedor.getprovestado());
-            stmt.setInt(4, proveedor.getprovtelefono());
-            stmt.setString(5, proveedor.getprovtdireccion());
-            stmt.setInt(6, proveedor.getprovid());
+            stmt.setBoolean(2, proveedor.getprovestado());
+            stmt.setInt(3, proveedor.getprovtelefono());
+            stmt.setString(4, proveedor.getprovtdireccion());
+            stmt.setInt(5, proveedor.getprovid());
 
 
 
